@@ -1,0 +1,139 @@
+<template>
+  <div class="board-wrap w960">
+    <div class="header">
+      <h2 class="title">用户留言板</h2>
+
+      <img src="/static/imgs/board-logo.jpg">
+    </div>
+
+    <div class="content">
+      <ul v-for="(item,index) in messageData" :key="index">
+        <li>
+          <div class="content-item"> 
+            <h3>{{item.title}}</h3>
+            <p>{{item.content}}</p>
+          </div>
+          <p>发表于 <span><timer :time="item.createdTime"></timer></span>  由<span> {{item.author.username}} </span> 发表</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form-wrap">
+      <h2 class="title">发表留言</h2>
+      <el-form :model="formData">
+        <el-form-item label="标题">
+          <el-input v-model="formData.title"></el-input>
+        </el-form-item>
+        <el-form-item label="留言内容">
+          <el-input type="textarea" v-model="formData.content" @keyup.enter.native="handlePublish"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handlePublish">保存发表</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name:'',
+  data() {
+    return {
+      formData: {
+        title:'',
+        content:''
+      },
+      messageData:[]
+    }
+  },
+  components: {
+
+  },
+  methods: {
+    handlePublish() {
+      this.$axios.post('/message',this.formData).then(res => {
+        if (res.code == 200) {
+          this.$message.success(res.msg)
+          this.getMessage()
+        } else {
+          this.$message.info(res.msg)
+        }
+      })
+    },
+    getMessage() {
+      this.$axios.get('/message').then(res => {
+        if (res.code == 200) {
+          console.log(res);
+          this.messageData = res.data
+        }
+      })
+    }
+  },
+  created() {
+    this.getMessage()
+  }
+}
+</script>
+
+<style scoped lang="scss">
+
+.board-wrap{
+  background: #fff;
+  padding-top:15px;
+
+  .title{
+    color:#555;
+    font-size: 20px;
+    font-weight: normal;
+    margin:0 0 15px 15px;
+  }
+
+  img{
+    width: 960px;
+  }
+
+  .form-wrap{
+    padding:20px 0 20px 40px;
+    width: 500px;
+    box-sizing: border-box;
+  }
+}
+.content{
+  ul{
+
+    li{
+      border-bottom:1px solid #ddd;
+
+      span{
+        color:#409eff;
+      }
+    }
+    .content-item{
+      height: 60px;
+      line-height: 1.5;
+      color:#444;
+      padding:10px 10px;
+      box-sizing: border-box;
+      p{
+        text-indent: 26px;
+        padding:5px 0;
+        margin: 0;
+      }
+      
+    }
+    p{
+      margin: 10px 10px;
+      color:#666;
+      font-size: 14px;
+    }
+    padding:15px 30px;
+  }
+}
+</style>
+<style>
+.el-textarea__inner{
+  height: 150px;
+}
+</style>
+
