@@ -13,10 +13,10 @@
             <Upload v-model="formData.avatar"></Upload>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input v-model="formData.password"></el-input>
+            <el-input v-model="formData.password" type="password"></el-input>
           </el-form-item>
           <el-form-item label="确认密码">
-            <el-input v-model="formData.password2"></el-input>
+            <el-input v-model="formData.password2" type="password"></el-input>
           </el-form-item>
           <el-form-item label="出生日期">
             <div class="block">
@@ -32,6 +32,9 @@
           </el-form-item>
           <el-form-item label="邮箱">
             <el-input v-model="formData.email"></el-input>
+          </el-form-item>
+          <el-form-item label="个签">
+            <el-input v-model="formData.desc"></el-input>
           </el-form-item>
           <div class="btn-wrap">
             <el-button type="primary" @click="handleRegister">注册</el-button>
@@ -51,13 +54,14 @@ export default {
   data() {
     return {
       formData: {
-        avatar:'',
-        username:'',
-        password:'',
-        password2:'',
-        date:'',
-        tel:'',
-        email:''
+        avatar:'http://pbl.yaojunrong.com/FoTHXRGBhCd61yMbW4vY930wSbTp',
+        username:'road people jia',
+        password:'123456',
+        password2:'123456',
+        date:'2010-10-10',
+        tel:'110',
+        email:'119120114113',
+        desc:'白茶清欢无别事'
       }
     }
   },

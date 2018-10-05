@@ -1,6 +1,6 @@
 <template>
   <div class="message-board">
-    <h2 class="title">用户留言板<i>Message Board</i></h2>
+    <h2 class="board-title">用户留言板<i>Message Board</i></h2>
     <div class="board-content">
       <h3>用户留言信息</h3>
     </div>
@@ -31,7 +31,7 @@ export default {
   border-left:1px dashed #e1e1e1;
   height: 450px;
 }
-.title{
+.board-title{
   height: 40px;
   line-height: 42px;
   font-size: 20px;

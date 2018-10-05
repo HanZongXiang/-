@@ -34,6 +34,13 @@ body{
 .fr{
   float: right;
 }
+.title{
+  margin-top: 20px;
+  font-weight: normal;
+  padding-left: 10px;
+  border-left:2px solid rgb(54, 52, 54);
+  line-height: 1.5;
+}
 ul{
   list-style: none;
 }
@@ -41,6 +48,9 @@ ul{
   text-align: center;
 }
 .el-table th > .cell {
+  text-align: center;
+}
+.el-table td > .cell {
   text-align: center;
 }
 </style>

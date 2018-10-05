@@ -10,9 +10,12 @@ const components = {
   index:() => import('@/views/index/index'),
   register: () => import('@/views/register/index'),
   board:() => import('@/views/board/index'),
+  music:() => import('@/views/music/index'),
   manage:() => import('@/views/manage/index'),
   backIndex:() => import('@/views/backStage/index'),
-  userList:() => import('@/views/backStage/userList')
+  userList:() => import('@/views/backStage/userList'),
+  userDetails:() => import('@/views/backStage/userDetails'),
+  addMusic:() => import('@/views/backStage/addMusic')
 }
 
 let router = new Router({
@@ -48,6 +51,14 @@ let router = new Router({
           component: components.board
         },
         {
+          path: 'music',
+          name: 'music',
+          meta: {
+            title: '音乐专栏'
+          },
+          component: components.music
+        },
+        {
           path: '/manage',
           name: 'manage',
           meta: {
@@ -71,6 +82,22 @@ let router = new Router({
                 title: '用户列表'
               },
               component: components.userList
+            },
+            {
+              path: 'userDetails',
+              name: 'userDetails',
+              meta: {
+                title: '用户详情'
+              },
+              component: components.userDetails
+            },
+            {
+              path: 'addMusic',
+              name:'addMusic',
+              meta: {
+                title:'添加音乐'
+              },
+              component:components.addMusic
             }
           ]
         },

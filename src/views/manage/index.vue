@@ -34,22 +34,20 @@
           </el-menu-item-group>
         </el-submenu>
 
-        <el-submenu index="管理员用户">
+        <el-submenu index="音乐管理">
           <template slot="title">
-            <i class="el-icon-edit-outline"></i>
-            <span slot="title">管理员用户</span>
+            <i class="el-icon-menu"></i>
+            <span slot="title">音乐管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/layout/users">用户列表</el-menu-item>
-            <el-menu-item index="/layout/userAdd">添加管理员</el-menu-item>
-            <el-menu-item index="/layout/changePassword">修改密码</el-menu-item>
-            <el-menu-item index="/layout/userEdit">修改个人信息</el-menu-item>
+            <el-menu-item index="/">音乐列表</el-menu-item>
+            <el-menu-item index="/manage/addMusic">添加音乐</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 
         <el-submenu index="新闻管理">
           <template slot="title">
-            <i class="el-icon-menu"></i>
+            <i class="el-icon-edit-outline"></i>
             <span slot="title">新闻管理</span>
           </template>
           <el-menu-item-group>
@@ -109,7 +107,7 @@ export default {
   font-size: 20px;
 }
 .tab{
-  position:fixed;
+  position:absolute;
   top:180px;
   left:200px;
   right:0;
@@ -135,7 +133,8 @@ export default {
 }
 .sidebar{
     width: 200px;
-    position:fixed;
+    position: absolute;
+    height: 600px;
     top:180px;
     bottom:0;
     left:0;
@@ -152,5 +151,7 @@ export default {
   .main-content{
     margin-top:80px;
     margin-left:200px;
+    padding-top: 20px;
+    padding-left: 10px;
   }
 </style>
