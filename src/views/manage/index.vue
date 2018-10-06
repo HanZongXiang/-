@@ -2,7 +2,7 @@
   <div class="index-wrap">
     <div class="header">
       <div class="tab">
-        <h2 class="index-title">后台管理{{title}}</h2>
+        <h2 class="index-title">后台管理</h2>
         <div class="user-center">
           <el-dropdown>
             <span class="el-dropdown-link">
@@ -51,8 +51,9 @@
             <span slot="title">新闻管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/layout/categoryList">分类列表</el-menu-item>
-            <el-menu-item index="/layout/addCategory">添加分类</el-menu-item>
+            <el-menu-item index="/">新闻列表</el-menu-item>
+            <el-menu-item index="/manage/addJournalisms">添加新闻</el-menu-item>
+            <el-menu-item index="/">新闻详情</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
         

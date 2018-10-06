@@ -15,7 +15,8 @@ const components = {
   backIndex:() => import('@/views/backStage/index'),
   userList:() => import('@/views/backStage/userList'),
   userDetails:() => import('@/views/backStage/userDetails'),
-  addMusic:() => import('@/views/backStage/addMusic')
+  addMusic:() => import('@/views/backStage/addMusic'),
+  addJournalisms:() => import('@/views/backStage/addJournalisms')
 }
 
 let router = new Router({
@@ -98,6 +99,14 @@ let router = new Router({
                 title:'添加音乐'
               },
               component:components.addMusic
+            },
+            {
+              path: 'addJournalisms',
+              name: 'addJournalisms',
+              meta: {
+                title: '添加新闻'
+              },
+              component: components.addJournalisms
             }
           ]
         },

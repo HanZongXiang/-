@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="w960">
-      <img src="/static/imgs/long.jpg">
+      <img src="/static/imgs/long.jpg" style="vertical-align:middle">
     </div>
     <div class="help w960">
       <h4>用户注册与登录</h4>

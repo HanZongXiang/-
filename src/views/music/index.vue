@@ -1,11 +1,16 @@
 <template>
   <div class="music w960">
     <div class="music-wrap">
-      <aplayer v-if="isShow" autoplay showLrc
-        mode="ciuculation"
+      <aplayer v-if="isShow"
+        autoplay 
+        showLrc
+        repeat="list"
+        listMaxHeight="30"
         :music="musicData[0]"
         :list="musicData"
       />
+
+      
     </div>
     <div class="pagination-wrap">
       <el-pagination
