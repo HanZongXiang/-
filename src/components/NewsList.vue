@@ -2,61 +2,19 @@
   <div class="news-list">
     <div class="news-title clearfix">
       <span class="fl">酒吧新闻列表<i>Bar News</i></span>
-      <img class="fr" src="/static/imgs/w_25_02.gif">
+      <router-link to="/news">
+        <img class="fr" src="/static/imgs/w_25_02.gif">
+      </router-link>
+      
     </div>
     <div class="list-wrap">
       <ul class="list">
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
+        <li class="list-item" v-for="(item,index) in listData" :key="index">
+          <router-link :to="{name:'newsDetail', params:{id:item._id}}">
+            {{item.title}}
           </router-link>
         </li>
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
-          </router-link>
-        </li>
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
-          </router-link>
-        </li>
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
-          </router-link>
-        </li>
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
-          </router-link>
-        </li>
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
-          </router-link>
-        </li>
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
-          </router-link>
-        </li>
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
-          </router-link>
-        </li>
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
-          </router-link>
-        </li>
-        <li class="list-item">
-          <router-link to="">
-            昆明百余警察凌晨出动平息酒吧群
-          </router-link>
-        </li>
-
+        
       </ul>
     </div>
   </div>
@@ -67,21 +25,28 @@ export default {
   name:'',
   data() {
     return {
-
+      listData: []
     }
   },
   components: {
 
   },
   methods: {
-
+    getNewsList() {
+      this.$axios.get('/journalisms',{page_size:6}).then(res => {
+        this.listData = res.data
+      })
+    }
+  },
+  created() {
+    this.getNewsList()
   }
 }
 </script>
 
 <style scoped lang="scss">
 .news-list{
-  width: 550px;
+  width: 545px;
 
   .list{
     padding:0 0 10px;
@@ -93,12 +58,17 @@ export default {
       padding-left: 10px;
       border-bottom:1px dashed #e1e1e1;
     }
+    .list-item:nth-child(2n-1){
+      border-left: 2px solid #ff6700;
+    }
     .list-item:nth-child(2n){
       background: rgba(135, 206, 235,.4) ;
     }
     a{
+      display: block;
+      width: 100%;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 14px;
       color:#555;
     }
     a:hover{

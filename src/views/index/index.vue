@@ -89,7 +89,8 @@ export default {
 }
 
 .board-wrap{
-  margin-left:20px;
+  margin-left:15px;
+  height: 300px;
 }
 
 img{

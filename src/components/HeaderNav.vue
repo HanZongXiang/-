@@ -15,7 +15,7 @@
         <el-menu-item index="/">首页</el-menu-item>
         <el-menu-item index="/board">留言板</el-menu-item>
         <el-menu-item index="3">酒吧特色</el-menu-item>
-        <el-menu-item index="2">新闻中心</el-menu-item>
+        <el-menu-item index="/news">新闻中心</el-menu-item>
         <el-menu-item index="/music">音乐专栏</el-menu-item>
         <el-menu-item index="6">预定/付款</el-menu-item>
       </el-menu>

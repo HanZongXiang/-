@@ -8,8 +8,10 @@ import router from './router'
 import $axios from './util'
 import store from './store'
 import timer from './components/timer'
+import upload from './components/Upload'
 
 Vue.component('timer',timer)
+Vue.component('upload',upload)
 
 Vue.use(ElementUI)
 Vue.prototype.$axios = $axios

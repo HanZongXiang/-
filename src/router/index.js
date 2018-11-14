@@ -52,6 +52,22 @@ let router = new Router({
           component: components.board
         },
         {
+          path: 'news',
+          name: 'news',
+          meta: {
+            title: '新闻中心'
+          },
+          component: () => import('@/views/news/newsCenter')
+        },
+        {
+          path: 'newsDetail/:id',
+          name: 'newsDetail',
+          meta: {
+            title: '新闻详情'
+          },
+          component: () => import('@/views/news/newsDetail')
+        },
+        {
           path: 'music',
           name: 'music',
           meta: {
@@ -107,10 +123,23 @@ let router = new Router({
                 title: '添加新闻'
               },
               component: components.addJournalisms
+            },
+            {
+              path: 'journalismsList',
+              name: 'journalismsList',
+              meta: {
+                title: '新闻列表'
+              },
+              component: () => import('@/views/backStage/newsList')
             }
           ]
         },
       ]
+    },
+    {
+      path: '*',
+      name: 'notFound',
+      component: () => import('@/views/notFound/404')
     }
   ]
 })

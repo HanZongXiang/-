@@ -32,7 +32,7 @@
             </span>
             <el-dropdown-menu slot="dropdown">
 
-              <el-dropdown-item command="1">修改个人信息</el-dropdown-item>
+              <el-dropdown-item command="1">修改信息</el-dropdown-item>
               <el-dropdown-item command="3">后台管理</el-dropdown-item>
               <el-dropdown-item command="2">退出登录</el-dropdown-item>
               

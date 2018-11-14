@@ -1,10 +1,25 @@
 <template>
   <div class="write-note">
+    <div>
+      <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{path:'/index'}">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{path:'/layout/users'}">新闻列表</el-breadcrumb-item>
+        <el-breadcrumb-item>添加新闻</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <div class="main-content w960">
       <div class="title">标题</div>
 
       <div class="input-wrap">
         <el-input class="item" v-model="formData.title"></el-input>
+      </div>
+
+      <div class="img-wrap">
+
+        <div class="title">头图</div>
+        <upload v-model="formData.img">
+
+        </upload>
       </div>
 
       <div class="title">内容</div>
@@ -18,7 +33,7 @@
 
 
       <div class="btn-wrap">
-        <el-button type="primary" @click="handleSubmit">保存提交</el-button>
+        <el-button type="primary" size="mini" @click="handleSubmit">保存提交</el-button>
       </div>
     </div>
     
@@ -37,7 +52,8 @@ export default {
     return {
       formData: {
         title:'',
-        content:''
+        content:'',
+        img:''
       },
       categoryOptions:[],
       editorOption: {

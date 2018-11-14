@@ -51,7 +51,7 @@
             <span slot="title">新闻管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/">新闻列表</el-menu-item>
+            <el-menu-item index="/manage/journalismsList">新闻列表</el-menu-item>
             <el-menu-item index="/manage/addJournalisms">添加新闻</el-menu-item>
             <el-menu-item index="/">新闻详情</el-menu-item>
           </el-menu-item-group>
@@ -135,7 +135,7 @@ export default {
 .sidebar{
     width: 200px;
     position: absolute;
-    height: 600px;
+    height: 100vh;
     top:180px;
     bottom:0;
     left:0;

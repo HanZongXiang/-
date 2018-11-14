@@ -7,31 +7,36 @@
     </div>
 
     <div class="content">
-      <ul v-for="(item,index) in messageData" :key="index">
-        <li>
+      <ul>
+        <li v-for="(item,index) in messageData" :key="index">
           <div class="content-item"> 
-            <h3>{{item.title}}</h3>
-            <p>{{item.content}}</p>
+            <div class="top">
+              <img :src="item.author.avatar" style="width: 50px;height: 50px;border-radius: 50%;margin-right: 10px" class="avatar">
+              {{item.title}}
+            </div>
+            <p style="margin-top: 5px">{{item.content}}</p>
           </div>
-          <p>发表于 <span><timer :time="item.createdTime"></timer></span>  由<span> {{item.author.username}} </span> 发表</p>
+          <p>发表于 <span><timer :time="item.createdTime"></timer></span></p>
         </li>
       </ul>
     </div>
-
-    <div class="form-wrap">
-      <h2 class="title">发表留言</h2>
-      <el-form :model="formData">
-        <el-form-item label="标题">
-          <el-input v-model="formData.title"></el-input>
-        </el-form-item>
-        <el-form-item label="留言内容">
-          <el-input type="textarea" v-model="formData.content" @keyup.enter.native="handlePublish"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="handlePublish">保存发表</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
+    <el-card>
+      <div slot="header">发表留言</div>
+      <div class="form-wrap">
+        <el-form :model="formData">
+          <el-form-item label="标题">
+            <el-input v-model="formData.title"></el-input>
+          </el-form-item>
+          <el-form-item label="留言内容">
+            <el-input type="textarea" v-model="formData.content" @keyup.enter.native="handlePublish"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" size="mini" @click="handlePublish">保存发表</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+    </el-card>
+    
   </div>
 </template>
 
@@ -54,6 +59,10 @@ export default {
     handlePublish() {
       this.$axios.post('/message',this.formData).then(res => {
         if (res.code == 200) {
+          this.formData = {
+            title:'',
+            content:''
+          }
           this.$message.success(res.msg)
           this.getMessage()
         } else {
@@ -94,16 +103,18 @@ export default {
   }
 
   .form-wrap{
-    padding:20px 0 20px 40px;
+    padding:0 0 20px 40px;
     width: 500px;
     box-sizing: border-box;
   }
 }
 .content{
   ul{
-
+    li:first-child {
+      border-top: 1px dashed #ddd;
+    }
     li{
-      border-bottom:1px solid #ddd;
+      border-bottom:1px dashed #ddd;
 
       span{
         color:#409eff;
@@ -115,6 +126,11 @@ export default {
       color:#444;
       padding:10px 10px;
       box-sizing: border-box;
+
+      .top {
+        display:flex;
+        align-items: center
+      }
       p{
         text-indent: 26px;
         padding:5px 0;
@@ -123,7 +139,7 @@ export default {
       
     }
     p{
-      margin: 10px 10px;
+      margin: 45px 10px 10px;
       color:#666;
       font-size: 14px;
     }

@@ -1,9 +1,11 @@
 <template>
   <div class="message-board">
     <h2 class="board-title">用户留言板<i>Message Board</i></h2>
-    <div class="board-content">
-      <h3>用户留言信息</h3>
-    </div>
+    <ul class="board-content clearfix">
+      <li v-for="(item,index) in data">
+        @<span>{{item.author.username}}  :</span> {{item.content}}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -12,14 +14,21 @@ export default {
   name:'',
   data() {
     return {
-
+      data: []
     }
   },
   components: {
 
   },
   methods: {
-
+    getMessage() {
+      this.$axios.get('/message',{size: 5}).then(res => {
+        this.data = res.data
+      })
+    }
+  },
+  created() {
+    this.getMessage()
   }
 }
 </script>
@@ -29,7 +38,8 @@ export default {
   margin-top: 10px;
   padding-left:10px;
   border-left:1px dashed #e1e1e1;
-  height: 450px;
+  height: 305px;
+  width: 384px;
 }
 .board-title{
   height: 40px;
@@ -37,6 +47,7 @@ export default {
   font-size: 20px;
   font-weight: bold;
   color: #237BAF;
+  border-bottom: 1px solid #fff;
 
   i{
     font-style: normal;
@@ -48,12 +59,21 @@ export default {
   
 }
 .board-content{
-  h3{
-    font-size: 16px;
-    font-weight: normal;
-    color:#666;
-    border-left:3px solid #555;
-    padding-left: 5px;
+  box-sizing: border-box;
+  li {
+    font-size: 12px;
+    color: #555;
+    padding: 10px 0;
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px dashed #e1e1e1;
   }
+  // li:nth-child(2n) {
+  //   float: left;
+  // }
+  // li:nth-child(2n-1) {
+  //   float: left;
+  // }
 }
 </style>

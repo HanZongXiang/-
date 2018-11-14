@@ -1,28 +1,28 @@
 <template>
-  <div class="music w960">
+  <el-card class="music w960">
+    <div slot="header">音乐列表</div>
     <div class="music-wrap">
       <aplayer v-if="isShow"
-        autoplay 
         showLrc
         repeat="list"
         listMaxHeight="30"
-        :music="musicData[0]"
-        :list="musicData"
+        :music="shuffledList[0]"
+        :list="shuffledList"
       />
 
       
     </div>
-    <div class="pagination-wrap">
+    <div class="page-wrap">
       <el-pagination
         @current-change="pageChange"
         :page-size="12"
         background
-        layout="prev, pager, next"
+        layout="prev, pager, next, jumper"
         :total="count">
       </el-pagination>
     </div>
     
-  </div>
+  </el-card>
 </template>
 
 <script>
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     getMusicData() {
-      this.$axios.get('/music',{pn:this.page,size:12}).then(res => {
+      this.$axios.get('/music',{pn:this.pn,size:12}).then(res => {
         this.isShow = false
         if (res.code == 200) {
           this.musicData = res.data
@@ -53,25 +53,22 @@ export default {
       })
     },
     pageChange (page) {
-      this.page = page;
-      console.log(page);
+      this.pn = page;
       this.getMusicData()
     }
   },
   created() {
     this.getMusicData()
+  },
+  computed: {
+    shuffledList () {
+      return this.musicData
+    }
   }
 }
 </script>
 
 <style scoped>
-.music-wrap{
-  width: 600px;
-  position: relative;
-}
-.pagination-wrap{
-  position:fixed;
-  top:700px;
-  left:480px;
-}
+
+
 </style>
