@@ -135,7 +135,7 @@ export default {
 .sidebar{
     width: 200px;
     position: absolute;
-    height: 100vh;
+    min-height: 100vh;
     top:180px;
     bottom:0;
     left:0;

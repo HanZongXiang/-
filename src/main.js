@@ -9,6 +9,7 @@ import $axios from './util'
 import store from './store'
 import timer from './components/timer'
 import upload from './components/Upload'
+import './icons'
 
 Vue.component('timer',timer)
 Vue.component('upload',upload)

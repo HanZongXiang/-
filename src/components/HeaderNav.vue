@@ -3,7 +3,7 @@
     <div class="header">
       <img src="static/imgs/header_bg.gif">
     </div>
-    <div class="nav">
+    <div :class="searchBarFixed == 1 ? 'isFixed' :'nav'" id="searchBar">
       <div class="line"></div>
       <el-menu
         class="el-menu-demo"
@@ -28,21 +28,43 @@ export default {
   name:'',
   data() {
     return {
-
+      searchBarFixed:0
     }
   },
   components: {
 
   },
   methods: {
+    handleScroll () {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      var offsetTop = document.querySelector('#searchBar').offsetTop
+      if ( scrollTop>offsetTop) {
+        this.searchBarFixed = 1
+      } else {
+        this.searchBarFixed = 0
+      }
 
-  }
+    },
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
 }
 </script>
 
 <style scoped>
 .header{
   background: url('/static/imgs/body_bg.gif')
+}
+.isFixed{
+  position:fixed;
+  top:0;
+  z-index:9999;
+  padding-left: 289px;
+  padding-right: 289px;
+  margin:0 auto;
+  background: #222;
+  width: 100%;
 }
 img{
   display:block;
@@ -56,7 +78,7 @@ img{
   margin:0 auto;
   background: #222;
 }
-.el-menu.el-menu--horizontal {
+.el-menu.el-menu—horizontal {
     border-bottom: none;
 }
 </style>

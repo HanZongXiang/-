@@ -53,6 +53,9 @@
     <div class="footer">
       <span>COPYRIGHT © 2018-2019    小型酒吧在线管理系统 .Inc </span>
     </div>
+    <el-tooltip placement="top" content="返回顶部">
+      <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="0" transition-name="fade"/>
+    </el-tooltip>
   </div>
 </template>
 
@@ -61,19 +64,29 @@ import Swiper from '@/components/Swiper'
 import LoginBox from '@/components/LoginBox'
 import NewsList from '@/components/NewsList'
 import MessageBoard from '@/components/MessageBoard'
+import BackToTop from '@/components/BackToTop'
 
 export default {
   name:'',
   data() {
     return {
-
+      myBackToTopStyle: {
+        right: '50px',
+        bottom: '50px',
+        width: '40px',
+        height: '40px',
+        'border-radius': '4px',
+        'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
+        background: '#e7eaf1'// 按钮的背景颜色 The background color of the button
+      }
     }
   },
   components: {
     Swiper,
     LoginBox,
     NewsList,
-    MessageBoard
+    MessageBoard,
+    BackToTop
   },
   methods: {
 
