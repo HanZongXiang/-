@@ -17,7 +17,8 @@ const components = {
   userList:() => import('@/views/backStage/userList'),
   userDetails:() => import('@/views/backStage/userDetails'),
   addMusic:() => import('@/views/backStage/addMusic'),
-  addJournalisms:() => import('@/views/backStage/addJournalisms')
+  addJournalisms:() => import('@/views/backStage/addJournalisms'),
+  order: () => import('@/views/OrderAndPay')
 }
 
 let router = new Router({
@@ -83,6 +84,14 @@ let router = new Router({
             title: '音乐专栏'
           },
           component: components.music
+        },
+        {
+          path: 'order',
+          name: 'order',
+          meta: {
+            title: '下单/付款'
+          },
+          component: components.order
         },
         {
           path: '/manage',

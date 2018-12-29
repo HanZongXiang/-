@@ -17,7 +17,7 @@
         <el-menu-item index="/features">酒吧特色</el-menu-item>
         <el-menu-item index="/news">新闻中心</el-menu-item>
         <el-menu-item index="/music">音乐专栏</el-menu-item>
-        <el-menu-item index="6">预定/付款</el-menu-item>
+        <el-menu-item index="/order">预定/付款</el-menu-item>
       </el-menu>
     </div>
   </div>
