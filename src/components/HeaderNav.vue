@@ -6,7 +6,7 @@
     <div :class="searchBarFixed == 1 ? 'isFixed' :'nav'" id="searchBar">
       <div class="line"></div>
       <el-menu
-        class="el-menu-demo"
+        :default-active="activeIndex"
         mode="horizontal"
         :router="true"
         background-color="#222"
@@ -28,7 +28,8 @@ export default {
   name:'',
   data() {
     return {
-      searchBarFixed:0
+      searchBarFixed:0,
+      activeIndex: '1'
     }
   },
   components: {
