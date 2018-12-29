@@ -53,7 +53,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .header{
   background: url('/static/imgs/body_bg.gif')
 }
@@ -74,12 +74,11 @@ img{
   margin:0 auto;
 }
 .nav{
-  padding-left: 289px;
-  padding-right: 289px;
+  padding-left: 26%;
   margin:0 auto;
   background: #222;
 }
-.el-menu.el-menu—horizontal {
-    border-bottom: none;
+ul.el-menu.el-menu--horizontal {
+  border-bottom: none;
 }
 </style>

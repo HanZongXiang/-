@@ -134,6 +134,13 @@ export default {
 .image {
   width: 100%;
 }
+.image:hover {
+  transform: rotate(1turn);
+  transition-delay: .5s;
+  transition-property: all;
+  transition-duration: 2s;
+  transition-timing-function: cubic-bezier(.34,0,.84,1);
+}
 .bottom {
   margin-top: 13px;
   line-height: 12px;
