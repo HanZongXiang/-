@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
+import features from '@/views/features'
 
 Vue.use(Router)
 
@@ -50,6 +51,14 @@ let router = new Router({
             title: '用户留言板'
           },
           component: components.board
+        },
+        {
+          path: 'features',
+          name: 'features',
+          meta: {
+            title: '酒吧特色'
+          },
+          component: features
         },
         {
           path: 'news',
