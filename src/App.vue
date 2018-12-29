@@ -10,7 +10,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import './scss/index.scss';
 *{
   margin: 0;
   padding: 0;

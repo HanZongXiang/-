@@ -138,6 +138,10 @@ img{
   h2 {
     font-weight: normal;
   }
+  p {
+    font-family: 'HYXuJingXingKaiW';
+    font-size: 18px;
+  }
   .left-content {
     width: 50%;
     margin: auto 10px;
@@ -153,9 +157,13 @@ img{
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  line-height: 2;
+  line-height: 1.5;
   h2 {
     font-weight: normal;
+  }
+  p {
+    font-family: 'HYXuJingXingKaiW';
+    font-size: 18px;
   }
   .left-content {
     width: 50%;
