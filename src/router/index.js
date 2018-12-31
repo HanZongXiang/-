@@ -14,8 +14,8 @@ const components = {
   music:() => import('@/views/music/index'),
   manage:() => import('@/views/manage/index'),
   backIndex:() => import('@/views/backStage/index'),
-  userList:() => import('@/views/backStage/userList'),
-  userDetails:() => import('@/views/backStage/userDetails'),
+  userList:() => import('@/views/backStage/user/userList'),
+  userDetails:() => import('@/views/backStage/user/userDetails'),
   addMusic:() => import('@/views/backStage/addMusic'),
   addJournalisms:() => import('@/views/backStage/addJournalisms'),
   order: () => import('@/views/OrderAndPay')
@@ -149,7 +149,23 @@ let router = new Router({
                 title: '新闻列表'
               },
               component: () => import('@/views/backStage/newsList')
-            }
+            },
+            {
+              path: 'addGoods',
+              name: 'addGoods',
+              meta: {
+                title: '添加商品'
+              },
+              component: () => import('@/views/backStage/goods/addGoods')
+            },
+            {
+              path: 'goods',
+              name: 'goods',
+              meta: {
+                title: '商品列表'
+              },
+              component: () => import('@/views/backStage/goods/goodsList')
+            },
           ]
         },
       ]

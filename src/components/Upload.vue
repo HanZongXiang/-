@@ -87,4 +87,7 @@ export default {
       display:block;
     }
   }
+  .input-wrap:hover {
+    border-color: #409eff;
+  }
 </style>

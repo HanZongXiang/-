@@ -187,14 +187,13 @@ img{
   top: 6px;
   margin-right: 15px;
 }
-.footer{
-  background: url("/static/imgs/topnav_bg.gif") repeat-x center center;
+.footer {
+  background: rgba(0, 0, 0, .5);
+  width: 100%;
   height: 40px;
   line-height: 40px;
   text-align: center;
   color:#fff;
   font-size: 14px;
-  margin-top: -3px;
-  margin-bottom: -4px;
 }
 </style>

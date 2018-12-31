@@ -1,38 +1,44 @@
 <template>
-  <div class="user-list">
-    <div class="user-manage">
+  <div class="goods-list">
+    <div class="good-manage">
       <div class="breadcrumb">
         <el-breadcrumb separator-class="el-icon-arrow-right"> 
-          <el-breadcrumb-item :to="{ path:'/index' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path:'/manage/index' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item>商品列表</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
 
       <el-table :data="tableData" class="table">
-        <el-table-column prop="username" label="昵称" width="180"></el-table-column>
-        <el-table-column prop="tel" label="电话" width="260">
-        </el-table-column>
-        <el-table-column prop="email" label="邮箱" width="350"></el-table-column>
-        <el-table-column prop="" label="用户头像" width="200" height="100">
+        <el-table-column prop="name" label="商品名" width="280"></el-table-column>
+        <el-table-column prop="" label="商品图片" width="300" height="100">
           <template slot-scope="scope">
-            <img :src="scope.row.avatar" class="avatar">
+            <img :src="scope.row.img" class="avatar">
           </template>
         </el-table-column>
+        <el-table-column prop="price" label="商品标价" width="160">
+        </el-table-column>
+        <el-table-column label="热度" width="250">
+          <template slot-scope="scope">
+            <el-tag>{{scope.row.heat}}</el-tag>
+          </template>
+        </el-table-column>
+        
         <el-table-column label="操作" width="300">
           <template slot-scope="scope">
-            <el-button @click="handleDetails(scope.row._id)" size="small" type="primary">查看详细</el-button>
-            <el-button @click="handleDelete(scope.row._id)" size="small" type="danger">删除</el-button>
+            <el-button size="mini" type="warning">编辑商品</el-button>
+            <el-button @click="handleDetails(scope.row._id)" size="mini" type="primary">查看详细</el-button>
+            <el-button @click="handleDelete(scope.row._id)" size="mini" type="danger">删除商品</el-button>
           </template>
         </el-table-column>
       </el-table>
 
-      <!-- <el-pagination 
+      <el-pagination 
       background
       @current-change="pageChange" 
-      layout="prev,pager,next"
+      layout="prev,pager,next,jumper"
       :page-size="5" 
       :total="count">
-      </el-pagination> -->
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -42,7 +48,9 @@ export default {
   name:'',
   data() {
     return {
-      tableData: []
+      tableData: [],
+      count: 0,
+      page: 1
     }
   },
   components: {
@@ -50,22 +58,28 @@ export default {
   },
   methods: {
     getData() {
-      this.$axios.get('/user').then(res => {
+      this.$axios.get('/goods', {page: this.page, page_size: 5}).then(res => {
+        console.log(1)
         if (res.code == 200) {
           this.tableData = res.data
+          this.count = res.total
         }
       })
+    },
+    pageChange (page) {
+      this.page = page
+      this.getData()
     },
     handleDetails (id) {
       this.$router.push(`/manage/userDetails?id=${id}`)
     },
     handleDelete (id) {
-      this.$confirm('此操作将永久删除该用户信息，是否继续?','警告',{
+      this.$confirm('此操作将永久删除该商品信息，是否继续?','警告',{
         confirmButtonText:'确定',
         cancelButtonText:'取消',
         type:'warning'
       }).then((res) => {
-        this.$axios.post('/user/delete',{id}).then(res => {
+        this.$axios.post('/goods/delete',{id}).then(res => {
           if(res.code == 200){
             this.$message.success(res.msg)
             this.getData()
@@ -100,8 +114,6 @@ el-table-column:last-child {
   height: 100px;
 }
 .el-pagination{
-  position:absolute;
-  top:840px;
-  left:670px;
+  margin-left: 200px;
 }
 </style>

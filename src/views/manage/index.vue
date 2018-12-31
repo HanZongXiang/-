@@ -15,7 +15,7 @@
             <el-menu-item-group>
               <el-menu-item index="/manage/users">用户列表</el-menu-item>
               <el-menu-item index="/login">个人信息</el-menu-item>
-              <el-menu-item index="/login">修改个人信息</el-menu-item>
+              <el-menu-item index="/login">修改信息</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -54,6 +54,18 @@
             </el-menu-item-group>
           </el-submenu>
 
+          <el-submenu index="商品管理">
+            <template slot="title">
+              <i class="el-icon-printer"></i>
+              <span slot="title">商品管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/manage/goods">商品列表</el-menu-item>
+              <el-menu-item index="/manage/addGoods">添加商品</el-menu-item>
+              <el-menu-item index="/layout/book/details">商品详情</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+
         </el-menu>
       </div>
 
@@ -74,7 +86,9 @@
         </div>
       </div>
       <div class="main-content">
-        <router-view></router-view>
+        <transition name="fade-transform" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </div>
     </el-row>
     
@@ -104,6 +118,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .8s;
+  transition-timing-function: linear;
+}
+.fade-transform-enter,
+.fade-transform-leave-active {
+  opacity: 0;
+  transform: translate(-100px, 0);
+}
 .index-title{
   text-align: center;
   height: 50px;
@@ -158,5 +182,6 @@ export default {
     margin-left:200px;
     padding-top: 20px;
     padding-left: 10px;
+    min-height: calc(100vh - 180px);
   }
 </style>
