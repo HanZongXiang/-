@@ -33,7 +33,7 @@
             <el-dropdown-menu slot="dropdown">
 
               <el-dropdown-item command="1">修改信息</el-dropdown-item>
-              <el-dropdown-item command="3">后台管理</el-dropdown-item>
+              <el-dropdown-item command="3" v-if="userInfo.level == 1">后台管理</el-dropdown-item>
               <el-dropdown-item command="2">退出登录</el-dropdown-item>
               
             </el-dropdown-menu>
@@ -85,7 +85,8 @@ export default {
             avatar:'',
             email:'',
             username:'',
-            tel:''
+            tel:'',
+            level:''
           }
 
           if (res.code == 200){

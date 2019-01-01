@@ -72,7 +72,25 @@
       </div>
     </div>
     <div class="footer">
-      <span>COPYRIGHT © 2018-2019    小型酒吧在线管理系统 .Inc </span>
+      <div style="margin: 0 auto;padding-top: 25px;padding-bottom: 25px;width: 570px;">
+        <ul>
+          <li>桃之夭夭</li>
+          <li>灼灼其华</li>
+          <li>之子于归</li>
+          <li>宜其室家</li>
+          <li>桃之夭夭</li>
+          <li>有蕡其实</li>
+          <li>之子于归</li>
+          <li>宜其家室</li>
+          <li>桃之夭夭</li>
+          <li>其叶蓁蓁</li>
+          <li>之子于归</li>
+          <li>宜其家人</li>
+        </ul>
+      </div>
+      <div class="copyright">
+        <span>COPYRIGHT © 2018-2019    小型酒吧在线管理系统 .Inc </span>
+      </div>
     </div>
     <el-tooltip placement="top" content="返回顶部">
       <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="0" transition-name="fade"/>
@@ -190,10 +208,21 @@ img{
 .footer {
   background: rgba(0, 0, 0, .5);
   width: 100%;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
   color:#fff;
   font-size: 14px;
+  ul {
+    display: flex;
+    li {
+      width: 15px;
+      line-height: 2;
+      margin-right: 35px;
+      font-family: flower;
+      font-size: 16px;
+    }
+  }
+  .copyright {
+    text-align: center;
+    padding-bottom: 15px;
+  }
 }
 </style>

@@ -94,6 +94,22 @@ let router = new Router({
           component: components.order
         },
         {
+          path: 'cart',
+          name: 'cart',
+          meta: {
+            title: '购物车'
+          },
+          component: () => import('@/views/OrderAndPay/cart')
+        },
+        {
+          path: 'forget',
+          name: 'forget',
+          meta: {
+            title: '重置密码'
+          },
+          component: () => import('@/views/reset')
+        },
+        {
           path: '/manage',
           name: 'manage',
           meta: {

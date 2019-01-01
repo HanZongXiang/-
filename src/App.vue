@@ -18,7 +18,7 @@ export default {
 }
 body{
   background: #f1f1f1;
-  font-family:  arial, "Hiragino Sans GB", "Microsoft Yahei", 微软雅黑, Tahoma, Helvetica, STHeiti;
+  font-family: arial, "Hiragino Sans GB", "Microsoft Yahei", 微软雅黑, Tahoma, Helvetica, STHeiti;
 }
 .clearfix::after{
   content:'';

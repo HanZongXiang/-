@@ -18,6 +18,7 @@
         <el-menu-item index="/news" @click="$router.push('/news')">新闻中心</el-menu-item>
         <el-menu-item index="/music" @click="$router.push('/music')">音乐专栏</el-menu-item>
         <el-menu-item index="/order" @click="jumpRouter('order')">下单 / 付款</el-menu-item>
+        <el-menu-item index="/forget" @click="$router.push('/forget')">忘记密码</el-menu-item>
       </el-menu>
     </div>
   </div>
@@ -72,15 +73,15 @@ export default {
 .header{
   background: url('/static/imgs/body_bg.gif')
 }
-.isFixed{
-  position:fixed;
-  top:0;
-  z-index:9999;
-  padding-left: 20%;
-  margin:0 auto;
-  background: #222;
-  width: 100%;
-}
+// .isFixed{
+  // position:fixed;
+  // top:0;
+  // z-index:9999;
+  // padding-left: 20%;
+  // margin:0 auto;
+  // background: #222;
+  // width: 100%;
+// }
 img{
   display:block;
   width: 960px;
@@ -88,7 +89,7 @@ img{
   margin:0 auto;
 }
 .nav{
-  padding-left: 20%;
+  padding-left: 18%;
   margin:0 auto;
   background: #222;
 }
