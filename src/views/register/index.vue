@@ -18,6 +18,12 @@
           <el-form-item label="确认密码">
             <el-input v-model="formData.password2" type="password"></el-input>
           </el-form-item>
+          <el-form-item label="密保问题">
+            <el-input v-model="formData.problem"></el-input>
+          </el-form-item>
+          <el-form-item label="密保答案">
+            <el-input v-model="formData.anwser"></el-input>
+          </el-form-item>
           <el-form-item label="出生日期">
             <div class="block">
               <el-date-picker
@@ -61,7 +67,9 @@ export default {
         date:'2010-10-10',
         tel:'110',
         email:'119120114113',
-        desc:'白茶清欢无别事'
+        desc:'白茶清欢无别事',
+        problem:'',
+        anwser:''
       }
     }
   },

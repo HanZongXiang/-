@@ -38,7 +38,11 @@ const xhr = {
 
   delete(url, data, config) {
     return this.fetch(url, data, config, 'delete')
-  }
+  },
+
+  put(url, data, config) {
+    return this.fetch(url, data, config, 'put')
+  },
 }
 
 export default xhr

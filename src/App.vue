@@ -29,6 +29,10 @@ body{
   width: 960px;
   margin:0 auto;
 }
+.w750{
+  width: 750px;
+  margin:0 auto;
+}
 .fl{
   float: left;
 }
