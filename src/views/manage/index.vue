@@ -48,9 +48,9 @@
               <span slot="title">留言管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/layout/book">图书列表</el-menu-item>
-              <el-menu-item index="/layout/book/addBook">添加图书</el-menu-item>
-              <el-menu-item index="/layout/book/details">图书详情</el-menu-item>
+              <el-menu-item index="/manage/mesList">留言列表</el-menu-item>
+              <el-menu-item index="/manage/addMes">添加留言</el-menu-item>
+              <el-menu-item index="/manage/detailMes">留言详情</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -157,7 +157,8 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    transform: translateY(30%);
+    border: 2px solid #fff;
+    transform: translateY(25%);
   }
 }
 .sidebar{

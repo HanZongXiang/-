@@ -33,7 +33,7 @@
 
 
       <div class="btn-wrap">
-        <el-button type="primary" size="mini" @click="handleSubmit">保存提交</el-button>
+        <el-button type="primary" size="mini" @click="handleSubmit" style="display: block;margin: 0 auto;">保存提交</el-button>
       </div>
     </div>
     

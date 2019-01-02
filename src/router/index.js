@@ -16,8 +16,8 @@ const components = {
   backIndex:() => import('@/views/backStage/index'),
   userList:() => import('@/views/backStage/user/userList'),
   userDetails:() => import('@/views/backStage/user/userDetails'),
-  addMusic:() => import('@/views/backStage/addMusic'),
-  addJournalisms:() => import('@/views/backStage/addJournalisms'),
+  addMusic:() => import('@/views/backStage/music/addMusic'),
+  addJournalisms:() => import('@/views/backStage/journalism/addJournalisms'),
   order: () => import('@/views/OrderAndPay')
 }
 
@@ -164,7 +164,15 @@ let router = new Router({
               meta: {
                 title: '新闻列表'
               },
-              component: () => import('@/views/backStage/newsList')
+              component: () => import('@/views/backStage/journalism/journalismsList')
+            },
+            {
+              path: 'mesList',
+              name: 'messageList',
+              meta: {
+                title: '留言列表'
+              },
+              component: () => import('@/views/backStage/message/messageList')
             },
             {
               path: 'addGoods',

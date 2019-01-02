@@ -10,7 +10,7 @@
     </div>
     <div v-else>
       <ul>
-        <li v-for="(item, index) in goods">
+        <li v-for="(item, index) in goods" :key="index">
           <div class="checkbox">
             <el-checkbox></el-checkbox>
           </div>

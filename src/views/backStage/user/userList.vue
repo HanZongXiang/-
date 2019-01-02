@@ -100,9 +100,7 @@ export default {
 .table{
   margin-top: 20px;
 }
-el-table-column:last-child {
-  margin-left: 50px;
-}
+
 .avatar{
   width: 100px;
   height: 100px;
