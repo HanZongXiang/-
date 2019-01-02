@@ -15,7 +15,7 @@
             <el-checkbox></el-checkbox>
           </div>
           <div class="img-wrap">
-            <img :src="item.product.img" style="display:block;max-height: 200px;border-radius: 3px;">
+            <img :src="item.product.img" style="display:block;max-height: 200px;max-width: 300px;border-radius: 3px;">
           </div>
           <div class="detail">
             <div>{{item.product.name}}</div>

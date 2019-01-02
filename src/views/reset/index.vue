@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="top">
-      <el-steps :active="stepsNum">
+      <el-steps :active="stepsNum" align-center>
         <el-step title="输入手机号" icon="el-icon-mobile-phone"></el-step>
         <el-step title="输入密保答案" icon="el-icon-message"></el-step>
         <el-step title="修改密码" icon="el-icon-refresh"></el-step>
@@ -15,7 +15,7 @@
       密保问题：{{userData[0].problem}}
       <span style="display: block;margin: 15px 0;height: 2px;width: 100%;"></span>
       密保答案：<el-input size="mini" placeholder="输入答案" style="width: 75%;" v-model="anwser"></el-input>
-      <el-button type="danger" size="mini"@click="submit">提交</el-button>
+      <el-button type="danger" size="mini" @click="submit">提交</el-button>
     </div>
     <div v-if="stepsNum === 3" style="margin-left: 15px;">
       <div style="margin: 35px 0;">
