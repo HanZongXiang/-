@@ -65,7 +65,9 @@ export default {
   },
   computed: {
     total () {
-      return 0
+      this.goods.forEach((item, index) => {
+        return item.product.price * this.nums
+      })
     }
   },
   created () {
