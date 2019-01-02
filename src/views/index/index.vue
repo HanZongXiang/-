@@ -101,6 +101,16 @@
     <div class="canvas-wrap">
       <canvas id="canvas" width="500" height="500"></canvas>
     </div>
+    <div class="penguin">
+      <div class="body">
+        <div class="eye"></div>
+        <div class="eye"></div>
+        <div class="beak"></div>
+      </div>
+      <div class="foot"></div>
+      <div class="foot"></div>
+    </div>
+
   </div>
 </template>
 
@@ -343,11 +353,261 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// 企鹅 start
+.penguin {
+  width: 250px;
+  height: 250px;
+  background: #000;
+  position: absolute;
+  top: 45%;
+  right: 53px;
+  border-radius: 50% 50% 30% 30%;
+  z-index: 10;
+}
+.penguin .body {
+  width: 70%;
+  height: 70%;
+  position: absolute;
+  left: 15%;
+  top: 15%;
+  border-radius: 50% 50% 30% 30%;
+  background: linear-gradient(to bottom, black 49%, white 49%);
+}
+.penguin .body::before, .penguin .body::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 25%;
+  background: #000;
+  position: absolute;
+  top: 40%;
+}
+.penguin .body::after {
+  right: 0;
+  border-radius: 100% 81% 77% 100% / 62% 30% 78% 100%;
+  -webkit-transform: rotate(-120deg);
+          transform: rotate(-120deg);
+  -webkit-animation: right-wing 7s infinite;
+          animation: right-wing 7s infinite;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+.penguin .body::before {
+  left: 0%;
+  border-radius: 81% 100% 100% 77% / 30% 62% 100% 78%;
+  -webkit-transform: rotate(120deg);
+          transform: rotate(120deg);
+  -webkit-animation: left-wing 10s infinite;
+          animation: left-wing 10s infinite;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+}
+.penguin .body .eye {
+  background: #fff;
+  border-radius: 83% 36% 0% 0% / 99% 79% 0% 0%;
+  width: 45%;
+  height: 50%;
+  position: absolute;
+}
+.penguin .body .eye:after {
+  content: '';
+  display: block;
+  height: 30%;
+  width: 50%;
+  border-top: calc(250px / 30) solid #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  -webkit-animation: eyes 4s infinite;
+          animation: eyes 4s infinite;
+}
+.penguin .body .eye + .eye {
+  border-radius: 36% 83%  0% 0% / 79% 99% 0% 0%;
+  left: 55%;
+}
+.penguin .body .eye + .eye:after {
+  left: 20%;
+}
+.penguin .body .beak {
+  content: '';
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  left: 35%;
+  top: 30%;
+  border-radius: 15%;
+  background: linear-gradient(225deg, orange 0%, #a96500 130%);
+  border-radius: 50% 50% 50% 0;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  transition: 1s all;
+  z-index: 5;
+}
+.penguin .foot {
+  background: orange;
+  width: 50%;
+  height: 8%;
+  position: absolute;
+  bottom: -2%;
+  left: -1%;
+  border-radius: 100% 15% 8% 4% / 100% 30% 35% 14%;
+  -webkit-animation: foot-left 1s infinite;
+          animation: foot-left 1s infinite;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+.penguin .foot + .foot {
+  left: 51%;
+  border-radius: 15% 100% 4% 8% / 30% 100% 14% 35%;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-animation: foot-right 1s infinite .5s;
+          animation: foot-right 1s infinite .5s;
+}
+@-webkit-keyframes eyes {
+  0% {
+    border-top-width: calc(250px / 30);
+  }
+  50% {
+    border-top-width: calc(250px / 10);
+  }
+  100% {
+    border-top-width: calc(250px / 30);
+  }
+}
+
+@keyframes eyes {
+  0% {
+    border-top-width: calc(250px / 30);
+  }
+  50% {
+    border-top-width: calc(250px / 10);
+  }
+  100% {
+    border-top-width: calc(250px / 30);
+  }
+}
+@-webkit-keyframes left-wing {
+  0% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+  50% {
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+  100% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+}
+@keyframes left-wing {
+  0% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+  50% {
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+  100% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+}
+@-webkit-keyframes right-wing {
+  0% {
+    -webkit-transform: rotate(-120deg);
+            transform: rotate(-120deg);
+  }
+  50% {
+    -webkit-transform: rotate(-100deg);
+            transform: rotate(-100deg);
+  }
+  100% {
+    -webkit-transform: rotate(-120deg);
+            transform: rotate(-120deg);
+  }
+}
+@keyframes right-wing {
+  0% {
+    -webkit-transform: rotate(-120deg);
+            transform: rotate(-120deg);
+  }
+  50% {
+    -webkit-transform: rotate(-100deg);
+            transform: rotate(-100deg);
+  }
+  100% {
+    -webkit-transform: rotate(-120deg);
+            transform: rotate(-120deg);
+  }
+}
+@-webkit-keyframes foot-left {
+  20% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  50% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  80% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+}
+@keyframes foot-left {
+  20% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  50% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  80% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+}
+@-webkit-keyframes foot-right {
+  20% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  50% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  80% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+}
+@keyframes foot-right {
+  20% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  50% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  80% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+}
+// 企鹅end
 .canvas-wrap {
   width: 500px;
   height: 500px;
   position: absolute;
-  top: 110px;
+  top: 34%;
   left: -97px;
   z-index: 666;
   border-radius: 50%;
