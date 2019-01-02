@@ -16,6 +16,7 @@
               <el-menu-item index="/manage/users">用户列表</el-menu-item>
               <el-menu-item index="/login">个人信息</el-menu-item>
               <el-menu-item index="/login">修改信息</el-menu-item>
+              <el-menu-item index="/manage/userPlay">用户玩耍</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

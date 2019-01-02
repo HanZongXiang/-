@@ -143,6 +143,14 @@ let router = new Router({
               component: components.userDetails
             },
             {
+              path: 'userPlay',
+              name: 'userPlay',
+              meta: {
+                title: '用户休闲'
+              },
+              component: () => import('@/views/backStage/user/userPlay')
+            },
+            {
               path: 'addMusic',
               name:'addMusic',
               meta: {
