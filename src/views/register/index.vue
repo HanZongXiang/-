@@ -5,7 +5,7 @@
         <img src="/static/imgs/top.jpg">
       </div>
       <div class="form-wrap">
-        <el-form label-width="80px" label-position="left" :model="formData">
+        <el-form label-width="80px" label-position="left" :model="formData" ref="registerForm">
           <el-form-item label="用户名">
             <el-input v-model="formData.username"></el-input>
           </el-form-item>
@@ -44,7 +44,7 @@
           </el-form-item>
           <div class="btn-wrap">
             <el-button type="primary" @click="handleRegister">注册</el-button>
-            <el-button type="warning">重置</el-button>
+            <el-button type="warning" @click="handleReset">重置</el-button>
           </div>
         </el-form>
       </div>
@@ -86,6 +86,9 @@ export default {
           this.$message.info(res.msg)
         }
       })
+    },
+    handleReset () {
+      this.$refs.registerForm.resetFields()
     }
   }
 }

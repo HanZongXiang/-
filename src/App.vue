@@ -12,6 +12,20 @@ export default {
 
 <style lang="scss">
 @import './scss/index.scss';
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.2);
+}
+body::-webkit-scrollbar-track {
+  border-radius: 0;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.1);
+}
 *{
   margin: 0;
   padding: 0;

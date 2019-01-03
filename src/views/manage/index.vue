@@ -119,6 +119,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.main-content::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.main-content::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.2);
+}
+.main-content::-webkit-scrollbar-track {
+  border-radius: 0;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.1);
+}
 .fade-transform-leave-active,
 .fade-transform-enter-active {
   transition: all .8s;

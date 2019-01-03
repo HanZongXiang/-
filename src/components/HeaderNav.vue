@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="header">
-      <img src="static/imgs/header_bg.gif">
+      <img src="http://pbl.yaojunrong.com/FuiUTBKCHde5HYvM-EW8qkDZwysQ">
     </div>
-    <div :class="searchBarFixed == 1 ? 'isFixed' :'nav'" id="searchBar">
+    <div class="nav">
       <div class="line"></div>
       <el-menu
         :default-active="activeIndex"
@@ -38,13 +38,6 @@ export default {
   },
   methods: {
     handleScroll () {
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-      var offsetTop = document.querySelector('#searchBar').offsetTop
-      if ( scrollTop>offsetTop) {
-        this.searchBarFixed = 1
-      } else {
-        this.searchBarFixed = 0
-      }
     },
     jumpRouter (mes) {
       console.log(this.$store.state.userInfo)
@@ -71,17 +64,8 @@ export default {
 
 <style scoped lang="scss">
 .header{
-  background: url('/static/imgs/body_bg.gif')
+  background: url('/static/imgs/body_bg.gif');
 }
-// .isFixed{
-  // position:fixed;
-  // top:0;
-  // z-index:9999;
-  // padding-left: 20%;
-  // margin:0 auto;
-  // background: #222;
-  // width: 100%;
-// }
 img{
   display:block;
   width: 960px;
