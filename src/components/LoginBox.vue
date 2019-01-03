@@ -143,6 +143,7 @@ h2{
       border-radius: 50%;
       text-align: center;
       cursor: pointer;
+      border: 2px solid #9c9b9b;
     }
   }
 

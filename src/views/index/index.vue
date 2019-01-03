@@ -98,19 +98,30 @@
     <el-tooltip placement="top" content="返回顶部">
       <back-to-top :custom-style="myBackToTopStyle" :visibility-height="300" :back-position="0" transition-name="fade"/>
     </el-tooltip>
-    <div class="canvas-wrap">
-      <canvas id="canvas" width="500" height="500"></canvas>
-    </div>
-    <div class="penguin">
-      <div class="body">
-        <div class="eye"></div>
-        <div class="eye"></div>
-        <div class="beak"></div>
+    <transition name="fade">
+      <div class="canvas-wrap" v-show="showWatch">
+        <canvas id="canvas" width="500" height="500"></canvas>
       </div>
-      <div class="foot"></div>
-      <div class="foot"></div>
+    </transition>
+    
+    <div class="watch" @click="toggle2">
+      <svg-icon :icon-class="!showWatch ? 'watch' : 'wrong'"></svg-icon>
     </div>
-
+    <transition name="fade">
+      <div class="penguin" v-if="showPenguin">
+        <div class="body">
+          <div class="eye"></div>
+          <div class="eye"></div>
+          <div class="beak"></div>
+        </div>
+        <div class="foot"></div>
+        <div class="foot"></div>
+      </div>
+    </transition>
+    
+    <div class="operate" @click="toggle">
+      <svg-icon :icon-class="!showPenguin ? 'penguin' : 'wrong'"></svg-icon>
+    </div>
   </div>
 </template>
 
@@ -133,7 +144,9 @@ export default {
         'border-radius': '4px',
         'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
         background: '#e7eaf1'// 按钮的背景颜色 The background color of the button
-      }
+      },
+      showPenguin: true,
+      showWatch: true
     }
   },
   components: {
@@ -344,6 +357,12 @@ export default {
           ctx.fillText(time, 190, 280);
       }
       setInterval(pageInit, 50);
+    },
+    toggle () {
+      this.showPenguin = !this.showPenguin
+    },
+    toggle2 () {
+      this.showWatch = !this.showWatch
     }
   },
   mounted () {
@@ -353,6 +372,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.watch {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 40%;
+  left: 10px;
+  font-size: 28px;
+}
+.operate {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 40%;
+  right: 10px;
+  font-size: 28px;
+}
 // 企鹅 start
 .penguin {
   width: 250px;
