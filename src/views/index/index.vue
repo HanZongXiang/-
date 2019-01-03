@@ -676,6 +676,7 @@ img{
   line-height: 2;
   h2 {
     font-weight: normal;
+    text-shadow: 0px 0px 50px #8df;
   }
   p {
     font-family: 'HYXuJingXingKaiW';
@@ -699,6 +700,7 @@ img{
   line-height: 1.5;
   h2 {
     font-weight: normal;
+    text-shadow: 0px 0px 50px #8df;
   }
   p {
     font-family: 'HYXuJingXingKaiW';

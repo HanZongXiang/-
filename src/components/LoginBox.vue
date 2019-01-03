@@ -1,8 +1,23 @@
 <template>
   <div class="login-box">
     <div v-if="!userInfo.username">
-      <h2>登录</h2>
-      <el-form label-width="50px" style="margin-top:40px">
+      <div class="welcome">
+        <svg width="100%" height="100">
+          <text text-anchor="middle" x="50%" y="50%" class="text text-1">
+            欢迎登录
+          </text>
+          <text text-anchor="middle" x="50%" y="50%" class="text text-2">
+            欢迎登录
+          </text>
+          <text text-anchor="middle" x="50%" y="50%" class="text text-3">
+            欢迎登录
+          </text>
+          <text text-anchor="middle" x="50%" y="50%" class="text text-4">
+            欢迎登录
+          </text>
+        </svg> 
+      </div>
+      <el-form label-width="50px" style="margin-top: -25px">
         <el-form-item label="账号">
           <el-input v-model="formData.tel" placeholder="请输入账号"></el-input>
         </el-form-item>
@@ -50,6 +65,7 @@
 </template>
 
 <script>
+require('../utils/jquery.min.js')
 import {mapState} from 'vuex'
 
 export default {
@@ -111,6 +127,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+/deep/ .el-form-item__label {
+  color: rgb(236, 226, 226);
+}
 .login-box{
   margin-top:10px; 
   width: 395px;
@@ -120,13 +139,45 @@ export default {
   box-sizing: border-box;
   padding:10px;
   padding-left:0;
+  background: url('https://github.com/HanZongXiang/ehome-admin-view/blob/master/static/sky.871d198.jpg?raw=true') no-repeat center center;
+  background-size: cover;
 }
-h2{
-  font-weight: normal;
-  color:#555;
-  font-size: 20px;
-  text-align: center;
-  margin-top: 11px;
+.welcome{
+  .text{
+      font-size: 50px;
+      font-weight: bold;
+      text-transform: uppercase;
+      fill: none;
+      stroke-width: 2px;
+      stroke-dasharray: 90 310;
+      animation: stroke 6s infinite linear;
+    }
+    .text-1{
+      stroke: #3498db;
+      text-shadow: 0 0 5px #3498db;
+      animation-delay: -1.5s;
+    }
+    .text-2{
+      stroke: #f39c12;
+      text-shadow: 0 0 5px #f39c12;
+      animation-delay: -3s;
+    }
+    .text-3{
+      stroke: #e74c3c;
+      text-shadow: 0 0 5px #e74c3c;
+      animation-delay: -4.5s;
+    }
+    .tt-4{
+      stroke: #9b59b6;
+      text-shadow: 0 0 5px #9b59b6;
+      animation-delay: -6s;
+    }
+
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: -400;
+      }
+    }
 }
 .btn{
   width: 100%;
@@ -151,7 +202,21 @@ h2{
     margin-top: 50px;
     margin-left: 110px;
     line-height: 3;
-    color:#555;
+    color:rgb(248, 228, 228);
+    p {
+      transition: all 1.5s ease;
+    }
+    p:hover {
+      animation: Glow 1.5s ease infinite alternate;
+    }
+    @keyframes Glow {
+      from {
+        text-shadow: 0 0 10px #fff,0 0 20px #fff,0 0 30px #fff,0 0 40px #00a67c,0 0 70px #00a67c,0 0 80px #00a67c,0 0 100px #00a67c,0 0 150px #00a67c;
+      }
+      to {
+        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #00a67c,0 0 35px #00a67c,0 0 40px #00a67c,0 0 50px #00a67c,0 0 75px #00a67c;
+      }
+    }
   }
   
 }
