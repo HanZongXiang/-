@@ -19,10 +19,10 @@
             <el-input v-model="formData.password2" type="password"></el-input>
           </el-form-item>
           <el-form-item label="密保问题">
-            <el-input v-model="formData.problem"></el-input>
+            <el-input v-model="formData.problem" placeholder="用于找回密码"></el-input>
           </el-form-item>
           <el-form-item label="密保答案">
-            <el-input v-model="formData.anwser"></el-input>
+            <el-input v-model="formData.anwser" placeholder="用于找回密码"></el-input>
           </el-form-item>
           <el-form-item label="出生日期">
             <div class="block">
@@ -60,14 +60,14 @@ export default {
   data() {
     return {
       formData: {
-        avatar:'http://pbl.yaojunrong.com/FoTHXRGBhCd61yMbW4vY930wSbTp',
-        username:'road people jia',
+        avatar:'',
+        username:'山驴逼一号',
         password:'123456',
         password2:'123456',
-        date:'2010-10-10',
-        tel:'110',
-        email:'119120114113',
-        desc:'白茶清欢无别事',
+        date:'1995-10-10',
+        tel:'110120119122',
+        email:'119120114113@sohu.com',
+        desc:'岁月是把杀猪刀',
         problem:'',
         anwser:''
       }
@@ -99,7 +99,6 @@ export default {
   border-radius: 4px;
   width: 600px;
   background: #fff;
-  height: 600px;
 }
 .form-wrap{
   padding:20px;

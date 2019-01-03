@@ -22,6 +22,7 @@ const components = {
 }
 
 let router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -149,6 +150,14 @@ let router = new Router({
                 title: '用户休闲'
               },
               component: () => import('@/views/backStage/user/userPlay')
+            },
+            {
+              path: 'musicList',
+              name:'musicList',
+              meta: {
+                title:'音乐列表'
+              },
+              component: () => import('@/views/backStage/music/musicList')
             },
             {
               path: 'addMusic',

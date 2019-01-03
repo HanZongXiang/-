@@ -106,7 +106,7 @@ export default {
   margin-left: 18%;
   margin-top: 35px;
 }
-.el-step__icon {
-  border-radius: 60%!important;
+/deep/ .el-step__icon {
+  border-radius: 65%;
 }
 </style>

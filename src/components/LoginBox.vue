@@ -1,23 +1,13 @@
 <template>
   <div class="login-box">
     <div v-if="!userInfo.username">
-      <div class="welcome">
-        <svg width="100%" height="100">
-          <text text-anchor="middle" x="50%" y="50%" class="text text-1">
-            欢迎登录
-          </text>
-          <text text-anchor="middle" x="50%" y="50%" class="text text-2">
-            欢迎登录
-          </text>
-          <text text-anchor="middle" x="50%" y="50%" class="text text-3">
-            欢迎登录
-          </text>
-          <text text-anchor="middle" x="50%" y="50%" class="text text-4">
-            欢迎登录
-          </text>
-        </svg> 
-      </div>
-      <el-form label-width="50px" style="margin-top: -25px">
+      <h2 class="clearfix">
+        <span>欢</span>
+        <span>迎</span>
+        <span>登</span>
+        <span>录</span>
+      </h2>
+      <el-form label-width="50px" style="margin-top: 15px">
         <el-form-item label="账号">
           <el-input v-model="formData.tel" placeholder="请输入账号"></el-input>
         </el-form-item>
@@ -139,45 +129,49 @@ export default {
   box-sizing: border-box;
   padding:10px;
   padding-left:0;
-  background: url('https://github.com/HanZongXiang/ehome-admin-view/blob/master/static/sky.871d198.jpg?raw=true') no-repeat center center;
+  background: url('/static/imgs/login-back.png') no-repeat center center;
   background-size: cover;
 }
-.welcome{
-  .text{
-      font-size: 50px;
-      font-weight: bold;
-      text-transform: uppercase;
-      fill: none;
-      stroke-width: 2px;
-      stroke-dasharray: 90 310;
-      animation: stroke 6s infinite linear;
-    }
-    .text-1{
-      stroke: #3498db;
-      text-shadow: 0 0 5px #3498db;
-      animation-delay: -1.5s;
-    }
-    .text-2{
-      stroke: #f39c12;
-      text-shadow: 0 0 5px #f39c12;
-      animation-delay: -3s;
-    }
-    .text-3{
-      stroke: #e74c3c;
-      text-shadow: 0 0 5px #e74c3c;
-      animation-delay: -4.5s;
-    }
-    .tt-4{
-      stroke: #9b59b6;
-      text-shadow: 0 0 5px #9b59b6;
-      animation-delay: -6s;
-    }
+h2 {
+  display: flex;
+  padding-top: 20px;
+  padding-left: 51px;
+  justify-content: space-around;
+  span{  
+    float:left;  
+    position: relative;  
+  }
+  span:nth-child(1){  
+    animation:jump 1s linear 0s infinite alternate;  
+  }  
 
-    @keyframes stroke {
-      100% {
-        stroke-dashoffset: -400;
-      }
-    }
+  span:nth-child(2){  
+    animation:jump 1s linear 0.2s infinite alternate;  
+  }  
+
+  span:nth-child(3){  
+    animation:jump 1s linear 0.4s infinite alternate;  
+  }  
+
+  span:nth-child(4){  
+    animation:jump 1s linear 0.6s infinite alternate;  
+  }
+
+  @keyframes jump  
+  {  
+    0%{  
+      top:0px;  
+      color:red;  
+    }  
+    50%{  
+      top:-10px;  
+      color:green;  
+    }  
+    100%{  
+      top:10px;  
+      color:blue;  
+    }  
+  }    
 }
 .btn{
   width: 100%;
@@ -195,7 +189,19 @@ export default {
       text-align: center;
       cursor: pointer;
       border: 2px solid #9c9b9b;
+      animation:run 8s linear 0s infinite;
     }
+    .img:hover {
+      animation-play-state:paused;
+    }
+    @keyframes run{  
+      from{  
+        transform:rotate(0deg);  
+      }  
+      to{  
+        transform:rotate(360deg);  
+      }  
+    }  
   }
 
   .userinfo-wrap{

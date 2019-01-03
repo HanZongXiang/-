@@ -57,6 +57,9 @@ export default {
       line-height: 40px;
       padding-left: 10px;
       border-bottom:1px dashed #e1e1e1;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap
     }
     .list-item:nth-child(2n-1){
       border-left: 2px solid #ff6700;

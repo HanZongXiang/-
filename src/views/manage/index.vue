@@ -26,7 +26,7 @@
               <span slot="title">音乐管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/">音乐列表</el-menu-item>
+              <el-menu-item index="/manage/musicList">音乐列表</el-menu-item>
               <el-menu-item index="/manage/addMusic">添加音乐</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
