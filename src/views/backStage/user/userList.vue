@@ -18,6 +18,7 @@
             <img :src="scope.row.avatar" class="avatar">
           </template>
         </el-table-column>
+        <el-table-column label="个签" prop="desc"></el-table-column>
         <el-table-column label="操作" width="300">
           <template slot-scope="scope">
             <el-button @click="handleDetails(scope.row._id)" size="small" type="primary">查看详细</el-button>
@@ -104,6 +105,8 @@ export default {
 .avatar{
   width: 100px;
   height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgb(187, 167, 167);
 }
 .el-pagination{
   margin-left:270px;

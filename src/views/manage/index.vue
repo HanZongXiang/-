@@ -1,11 +1,13 @@
 <template>
   <div style="overflow-x: hidden;">
     <el-row>
-      <div class="sidebar">
+      <div class="sidebar" :style="!opened ? 'width: 200px' : 'width: 65px;'">
+        <hamberger :toggle-click="toggleSidebar" :is-active="!opened" class="menu-operate"></hamberger>
         <el-menu
           :router = "true"
           background-color = "#545c64"
           text-color = "#fff"
+          :collapse="opened"
         >
           <el-submenu index="用户管理">
             <template slot="title">
@@ -71,7 +73,7 @@
       </div>
 
       <div class="header">
-        <div class="tab">
+        <div class="tab" :style="!opened ? 'left: 200px;' : 'left: 65px;'">
           <h2 class="index-title">后台管理</h2>
           <div class="user-center">
             <el-dropdown>
@@ -86,7 +88,7 @@
           </div>
         </div>
       </div>
-      <div class="main-content">
+      <div class="main-content" :style="!opened ? 'margin-left: 200px;' : 'margin-left: 65px;'">
         <transition name="fade-transform" mode="out-in">
           <router-view></router-view>
         </transition>
@@ -98,19 +100,22 @@
 
 <script>
 import {mapState} from 'vuex'
+import Hamberger from '../../components/Hamberger'
 
 export default {
   name:'',
   data() {
     return {
-
+      opened: false
     }
   },
   components: {
-
+    Hamberger
   },
   methods: {
-
+    toggleSidebar () {
+      this.opened = !this.opened
+    }
   },
   computed: {
     ...mapState(['userInfo'])
@@ -119,6 +124,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.menu-operate {
+  text-align: center;
+}
 .main-content::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -153,7 +161,6 @@ export default {
 .tab{
   position:absolute;
   top:0;
-  left:200px;
   right:0;
   height: 80px;
   line-height: 1rem;
@@ -162,6 +169,7 @@ export default {
   color:#fff;
   background-color: #2d3a4b;
   z-index: 999;
+  transition: all .3s;
   .user-center{
     position: absolute;
     top:0;
@@ -177,7 +185,6 @@ export default {
   }
 }
 .sidebar{
-    width: 200px;
     position: absolute;
     min-height: 100vh;
     top:0;
@@ -187,6 +194,7 @@ export default {
     overflow: hidden;
     padding-top: 80px;
     background: #545c64;
+    transition: all 0.3s;
   }
   /deep/ {
     .el-menu {
@@ -195,9 +203,9 @@ export default {
   }
   .main-content{
     margin-top:80px;
-    margin-left:200px;
     padding-top: 20px;
     padding-left: 10px;
     min-height: calc(100vh - 180px);
+    transition: all .3s;
   }
 </style>
