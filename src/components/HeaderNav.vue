@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="header">
-      <img src="http://pbl.yaojunrong.com/FtmSCsoo2lhgibcAAl3R3f6zRLL_">
+      <img src="http://pbl.yaojunrong.com/FuiUTBKCHde5HYvM-EW8qkDZwysQ">
     </div>
     <div class="nav">
       <div class="line"></div>
@@ -68,9 +68,8 @@ export default {
 }
 img{
   display:block;
-  width: 650px;
+  width: 960px;
   height: 120px;
-  margin:0 auto;
 }
 .nav{
   background: #222;
