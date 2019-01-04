@@ -1,53 +1,71 @@
 <template>
   <el-table :data="list" style="width: 100%;padding-top: 15px;">
-    <el-table-column label="Order_No" min-width="200">
+    <el-table-column label="订单号" min-width="200">
       <template slot-scope="scope">
-        {{ scope.row.order_no | orderNoFilter }}
+        {{ scope.row.order_no }}
       </template>
     </el-table-column>
-    <el-table-column label="Price" width="195" align="center">
+    <el-table-column label="订单价" width="195" align="center">
       <template slot-scope="scope">
-        ¥{{ scope.row.price | toThousandFilter }}
+        ¥{{ scope.row.price }}
       </template>
     </el-table-column>
-    <el-table-column label="Status" width="100" align="center">
+    <el-table-column label="订单状态" width="100" align="center">
       <template slot-scope="scope">
-        <el-tag :type="scope.row.status | statusFilter"> {{ scope.row.status }}</el-tag>
+        <el-tag :type="scope.row.status"> {{ scope.row.status }}</el-tag>
       </template>
     </el-table-column>
   </el-table>
 </template>
 
 <script>
-import { fetchList } from '@/api/transaction'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        success: 'success',
-        pending: 'danger'
-      }
-      return statusMap[status]
-    },
-    orderNoFilter(str) {
-      return str.substring(0, 30)
-    }
-  },
   data() {
     return {
-      list: null
+      list: [
+        {
+          order_no: 44575387121,
+          price: 315,
+          status: 'success'
+        },
+        {
+          order_no: 44575387122,
+          price: 446,
+          status: 'success'
+        },
+        {
+          order_no: 44575387123,
+          price: 225,
+          status: 'pending'
+        },
+        {
+          order_no: 44575387124,
+          price: 268,
+          status: 'success'
+        },
+        {
+          order_no: 44575387125,
+          price: 784,
+          status: 'success'
+        },
+        {
+          order_no: 44575387126,
+          price: 486,
+          status: 'pending'
+        },
+        {
+          order_no: 44575387127,
+          price: 578,
+          status: 'success'
+        }
+      ]
     }
   },
   created() {
-    this.fetchData()
   },
   methods: {
-    fetchData() {
-      fetchList().then(response => {
-        this.list = response.data.items.slice(0, 8)
-      })
-    }
+    
   }
 }
 </script>

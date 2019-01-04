@@ -87,7 +87,6 @@ ul{
 .detail-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
   img {
     display:block;
     max-width: 900px;

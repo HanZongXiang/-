@@ -5,22 +5,22 @@
     </div>
     <div style="position:relative;">
       <pan-thumb image="http://pbl.yaojunrong.com/FoTHXRGBhCd61yMbW4vY930wSbTp" class="panThumb"/>
-      <mallki class-name="mallki-text" text="vue-element-admin"/>
+      <mallki class-name="mallki-text" text="酒吧管理后台"/>
       <div style="padding-top:35px;" class="progress-item">
-        <span>Vue</span>
-        <el-progress :percentage="70"/>
+        <span>访问</span>
+        <el-progress :percentage="30"/>
       </div>
       <div class="progress-item">
-        <span>JavaScript</span>
+        <span>留言</span>
         <el-progress :percentage="18"/>
       </div>
       <div class="progress-item">
-        <span>Css</span>
-        <el-progress :percentage="12"/>
+        <span>下单</span>
+        <el-progress :percentage="42"/>
       </div>
       <div class="progress-item">
-        <span>ESLint</span>
-        <el-progress :percentage="100" status="success"/>
+        <span>购物车</span>
+        <el-progress :percentage="90"/>
       </div>
     </div>
   </el-card>
