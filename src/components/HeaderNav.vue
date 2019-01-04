@@ -12,7 +12,7 @@
         background-color="#222"
         text-color="#fff"
         active-text-color="#ffd04b">
-        <el-menu-item index="/" @click="$router.push('/')">首页</el-menu-item>
+        <el-menu-item index="/index" @click="$router.push('/index')">首页</el-menu-item>
         <el-menu-item index="/board" @click="jumpRouter('message')">留言板</el-menu-item>
         <el-menu-item index="/features" @click="$router.push('/features')">酒吧特色</el-menu-item>
         <el-menu-item index="/news" @click="$router.push('/news')">新闻中心</el-menu-item>
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       searchBarFixed:0,
-      activeIndex: '1'
+      activeIndex: this.$route.path
     }
   },
   components: {
