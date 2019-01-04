@@ -2,7 +2,6 @@
   <div class="layout">
     <HeaderNav></HeaderNav>
     <router-view></router-view>
-    
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow-x: hidden;">
+  <div style="overflow-x: hidden;" class="row-wrap">
     <el-row>
       <div class="sidebar" :style="!opened ? 'width: 200px' : 'width: 65px;'">
         <hamberger :toggle-click="toggleSidebar" :is-active="!opened" class="menu-operate"></hamberger>
@@ -72,7 +72,7 @@
         </el-menu>
       </div>
 
-      <div class="header">
+      <div class="container-wrap">
         <div class="tab" :style="!opened ? 'left: 200px;' : 'left: 65px;'">
           <h2 class="index-title">后台管理</h2>
           <div class="user-center">
@@ -87,12 +87,14 @@
             </el-dropdown>
           </div>
         </div>
+        
+        <div class="main-content" :style="!opened ? 'margin-left: 200px;' : 'margin-left: 65px;'">
+          <transition name="fade-transform" mode="out-in">
+            <router-view></router-view>
+          </transition>
+        </div>
       </div>
-      <div class="main-content" :style="!opened ? 'margin-left: 200px;' : 'margin-left: 65px;'">
-        <transition name="fade-transform" mode="out-in">
-          <router-view></router-view>
-        </transition>
-      </div>
+      
     </el-row>
     
   </div>
@@ -127,19 +129,19 @@ export default {
 .menu-operate {
   text-align: center;
 }
-.main-content::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+.row-wrap::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
-.main-content::-webkit-scrollbar-thumb {
+.row-wrap::-webkit-scrollbar-thumb {
   border-radius: 5px;
   box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.3);
 }
-.main-content::-webkit-scrollbar-track {
+.row-wrap::-webkit-scrollbar-track {
   border-radius: 0;
   box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-  background: rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.2);
 }
 .fade-transform-leave-active,
 .fade-transform-enter-active {
