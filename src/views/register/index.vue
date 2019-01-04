@@ -1,5 +1,5 @@
 <template>
-  <div class="register-wrap w960">
+  <div class="register-wrap w650" style="margin-top: 15px;">
     <div class="register">
       <div>
         <img src="/static/imgs/top.jpg">

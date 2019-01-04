@@ -103,8 +103,7 @@ export default {
 <style scoped lang="scss">
 .wrapper {
   width: 700px;
-  margin-left: 18%;
-  margin-top: 35px;
+  margin: 35px auto 0;
 }
 /deep/ .el-step__icon {
   border-radius: 65%;

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="header">
-      <img src="http://pbl.yaojunrong.com/FuiUTBKCHde5HYvM-EW8qkDZwysQ">
+      <img src="http://pbl.yaojunrong.com/FtmSCsoo2lhgibcAAl3R3f6zRLL_">
     </div>
     <div class="nav">
       <div class="line"></div>
@@ -68,16 +68,16 @@ export default {
 }
 img{
   display:block;
-  width: 960px;
+  width: 650px;
   height: 120px;
   margin:0 auto;
 }
 .nav{
-  padding-left: 18%;
-  margin:0 auto;
   background: #222;
 }
 ul.el-menu.el-menu--horizontal {
   border-bottom: none;
+  margin: 0 auto;
+  width: 645px;
 }
 </style>

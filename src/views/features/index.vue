@@ -1,5 +1,5 @@
 <template>
-  <div class="w960 container">
+  <div class="feature">
     <ul>
       <li style="margin-top: 130px;"><img src="http://pbl.yaojunrong.com/FtY6kS9nTfXB6ddoAX5c0afVcKkF"></li>
       <li style="margin-top: 130px;"><img src="http://pbl.yaojunrong.com/FqBDiINwlhi5dXDUAnBBETWkZvgn"></li>
@@ -27,7 +27,11 @@
 </script>
 
 <style scoped>
-.container li{
+.feature {
+    width: 880px;
+    margin: 35px auto 0;
+}
+.feature li{
     float: left;
     width: 170px;
     margin: 15px 10px;
@@ -37,84 +41,84 @@
     border-radius: 5px;
     box-shadow: 0 0 2px rgba(0,0,0,.5);
 }
-.container li img{
+.feature li img{
     width: 170px;
     height: 120px;
     border-radius: 5px;
     vertical-align: bottom;
 }
 
-.container li:nth-child(1){
+.feature li:nth-child(1){
     transform: rotate(30deg);
 	-webkit-transform: rotate(30deg);
 	-moz-transform: rotate(30deg);
 }
-.container li:nth-child(2){
+.feature li:nth-child(2){
     transform: rotate(-15deg);
 	-webkit-transform: rotate(-15deg);
 	-moz-transform: rotate(-15deg);
 }
-.container li:nth-child(3){
+.feature li:nth-child(3){
     transform: rotate(20deg);
 	-webkit-transform: rotate(20deg);
 	-moz-transform: rotate(20deg);
 }
-.container li:nth-child(4){
+.feature li:nth-child(4){
     transform: rotate(-10deg);
 	-webkit-transform: rotate(-10deg);
 	-moz-transform: rotate(-10deg);
 }
-.container li:nth-child(5){
+.feature li:nth-child(5){
     transform: rotate(10deg);
 	-webkit-transform: rotate(10deg);
 	-moz-transform: rotate(10deg);
 }
-.container li:nth-child(6){
+.feature li:nth-child(6){
     transform: rotate(-10deg);
 	-webkit-transform: rotate(-10deg);
 	-moz-transform: rotate(-10deg);
 }
-.container li:nth-child(7){
+.feature li:nth-child(7){
     transform: rotate(20deg);
 	-webkit-transform: rotate(20deg);
 	-moz-transform: rotate(20deg);
 }
-.container li:nth-child(8){
+.feature li:nth-child(8){
     transform: rotate(10deg);
 	-webkit-transform: rotate(10deg);
 	-moz-transform: rotate(10deg);
 }
-.container li:nth-child(9){
+.feature li:nth-child(9){
     transform: rotate(-10deg);
 	-webkit-transform: rotate(-10deg);
 	-moz-transform: rotate(-10deg);
 }
-.container li:nth-child(10){
+.feature li:nth-child(10){
     transform: rotate(10deg);
 	-webkit-transform: rotate(10deg);
 	-moz-transform: rotate(10deg);
 }
-.container li:nth-child(11){
+.feature li:nth-child(11){
     transform: rotate(-20deg);
 	-webkit-transform: rotate(-20deg);
 	-moz-transform: rotate(-20deg);
 }
-.container li:nth-child(12){
+.feature li:nth-child(12){
     transform: rotate(10deg);
 	-webkit-transform: rotate(10deg);
 	-moz-transform: rotate(10deg);
 }
-.container li:nth-child(13){
+.feature li:nth-child(13){
   transform: rotate(10deg);
 	-webkit-transform: rotate(10deg);
 	-moz-transform: rotate(10deg);
 }
-.container li:nth-child(13){
+.feature li:nth-child(13){
     transform: rotate(-10deg);
 	-webkit-transform: rotate(-10deg);
 	-moz-transform: rotate(-10deg);
 }
-.container li:hover{
+.feature li:hover{
   transform: rotate(0deg) scale(1.1);
 	-webkit-transform: rotate(0deg) scale(1.1);
 	-moz-transform: rotate(0deg) scale(1.1);
@@ -122,7 +126,7 @@
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 }
-.container li:hover{
+.feature li:hover{
 	-webkit-transform:rotate(0deg) scale(1.5);
 	-ms-transform:rotate(0deg) scale(1.5);
 	transform:rotate(0deg) scale(2);
