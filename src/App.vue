@@ -15,16 +15,16 @@ export default {
 body::-webkit-scrollbar {
   width: 6px;
   height: 6px;
+  background-color: #F5F5F5;
 }
 body::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-  background: rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+  background-color: rgba(7,170,247,0.7);
 }
 body::-webkit-scrollbar-track {
-  border-radius: 0;
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-  background: rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+  background: #fff;
 }
 *{
   margin: 0;

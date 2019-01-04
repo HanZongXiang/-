@@ -136,12 +136,11 @@ export default {
 .row-wrap::-webkit-scrollbar-thumb {
   border-radius: 5px;
   box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-  background: rgba(0,0,0,0.3);
+  background: rgba(177, 126, 126, 0.3);
 }
 .row-wrap::-webkit-scrollbar-track {
   border-radius: 0;
   box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-  background: rgba(0,0,0,0.2);
 }
 .fade-transform-leave-active,
 .fade-transform-enter-active {
