@@ -45,6 +45,7 @@
           </el-dropdown>
       </div>
       <div class="userinfo-wrap">
+        <p> 权限 : {{userInfo.level ? '管理员' : '普通用户'}}</p>
         <p> 昵称 : {{userInfo.username}}</p>
         <p> 电话 : {{userInfo.tel}}</p>
         <p> 邮箱 : {{userInfo.email}}</p>
@@ -205,7 +206,7 @@ h2 {
   }
 
   .userinfo-wrap{
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 110px;
     line-height: 3;
     color:rgb(248, 228, 228);

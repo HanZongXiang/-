@@ -22,7 +22,6 @@ const components = {
 }
 
 let router = new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
