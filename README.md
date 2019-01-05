@@ -9,7 +9,9 @@
 <a href="https://github.com/ElemeFE/element">
 <img src="https://img.shields.io/badge/element--ui-2.4.6-brightgreen.svg" alt="element-ui">
 </a>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="90" height="20"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="90" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path fill="#555" d="M0 0h51v20H0z"/><path fill="#007ec6" d="M51 0h39v20H51z"/><path fill="url(#b)" d="M0 0h90v20H0z"/></g><g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="110"> <text x="265" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="410">version</text><text x="265" y="140" transform="scale(.1)" textLength="410">version</text><text x="695" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="290">1.0.0</text><text x="695" y="140" transform="scale(.1)" textLength="290">1.0.0</text></g> </svg>
+<a href="https://github.com/HanZongXiang/Minibar-manage">
+<img src="https://img.shields.io/badge/version-1.0.0-orange.svg" alt="">
+</a>
 </p>
 
 ## Build Setup
