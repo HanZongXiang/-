@@ -8,7 +8,7 @@
     </div>
     <div class="divider"></div>
     <ul>
-      <li v-for="(goods,index) in listData">
+      <li v-for="(goods, index) in listData" :key="index">
         <div class="avatar">
           <img :src="goods.img">
         </div>
@@ -40,30 +40,33 @@
       :total="count">
     </el-pagination>
 
-    <div class="order-good" v-if="show">
-      <div class="content">
-        <div>
-          商品名：{{detail.name}}
-        </div>
-        <div class="goods-img">
-          <span>商品图：</span>
-          <img :src="detail.img">
-        </div>
-        <div>
-          标价：<span style="color: #f00;">￥{{detail.price}}</span>
-        </div>
-        <div>
-          简介：{{detail.desc ? detail.desc : '暂无介绍'}}
-        </div>
-        <div>
-          购买件数：<el-input-number v-model="orderGoods.nums" :min="1" :max="99" size="mini"></el-input-number>
-        </div>
-        <div class="btn-wrap">
-          <el-button type="info" size="mini" @click="close">我再想想</el-button>
-          <el-button type="danger" size="mini" @click="operate(detail._id)">确认下单</el-button>
+    <transition name="fade-transform">
+      <div class="order-good" v-if="show">
+        <div class="content">
+          <div>
+            商品名：{{detail.name}}
+          </div>
+          <div class="goods-img">
+            <span>商品图：</span>
+            <img :src="detail.img">
+          </div>
+          <div>
+            标价：<span style="color: #f00;">￥{{detail.price}}</span>
+          </div>
+          <div>
+            简介：{{detail.desc ? detail.desc : '暂无介绍'}}
+          </div>
+          <div>
+            购买件数：<el-input-number v-model="orderGoods.nums" :min="1" :max="99" size="mini"></el-input-number>
+          </div>
+          <div class="btn-wrap">
+            <el-button type="info" size="mini" @click="close">我再想想</el-button>
+            <el-button type="danger" size="mini" @click="operate(detail._id)">确认下单</el-button>
+          </div>
         </div>
       </div>
-    </div>
+    </transition>
+    
   </div>
 </template>
 
@@ -135,6 +138,16 @@
 </script>
 
 <style scoped lang="scss">
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .4s;
+  transition-timing-function: linear;
+}
+.fade-transform-enter,
+.fade-transform-leave-active {
+  opacity: 0;
+  transform: translate(-100px, 0);
+}
 .top {
   padding-top: 15px;
   padding-right: 30px;
@@ -227,7 +240,10 @@
   color: #666;
   .content {
     width: 750px;
-    margin: 80px auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     box-sizing: border-box;
     padding: 50px;
     background: rgba(255, 255, 255, .9);
