@@ -9,10 +9,12 @@ import $axios from './api'
 import store from './store'
 import timer from './components/timer'
 import upload from './components/Upload'
+import loading from './components/Loading-ufo'
 import './icons'
 
 Vue.component('timer',timer)
 Vue.component('upload',upload)
+Vue.component('loading', loading)
 
 Vue.use(ElementUI)
 Vue.prototype.$axios = $axios

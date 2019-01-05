@@ -1,6 +1,7 @@
 <template>
   <div class="news-center">
-    <el-card class="w960">
+    <loading v-if="loading"></loading>
+    <el-card class="w960" style="margin-top: 15px;">
       <div slot="header">
         新闻列表
       </div>
@@ -37,7 +38,8 @@
     name: '',
     data() {
       return {
-        listData: []
+        listData: [],
+        loading: false
       }
     },
     components: {
@@ -45,10 +47,14 @@
     },
     methods: {
       getListData() {
+        this.loading = true
         this.$axios.get('/journalisms').then(res => {
           if (res.code == 200) {
             this.listData = res.data
+            this.loading = false
           }
+        }).catch(err => {
+          this.loading = false
         })
       }
     },
@@ -60,7 +66,6 @@
 
 <style scoped lang="scss">
   .news-center {
-    padding-top: 15px;
 
     .list-item {
 
