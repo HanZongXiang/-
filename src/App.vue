@@ -90,6 +90,7 @@ ul{
   img {
     display:block;
     max-width: 900px;
+    margin: 0 auto;
   }
   p {
     text-indent: 2em;

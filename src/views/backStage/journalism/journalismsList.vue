@@ -24,7 +24,7 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" @click="handleDetail(scope.row._id)">查看详细</el-button>
+            <el-button type="primary" size="mini" @click="handleDetail(scope.row._id)">查看详情</el-button>
             <el-button type="warning" size="mini" @click="handleEdit(scope.row._id)">编辑新闻</el-button>
             <el-button type="danger" size="mini" @click="handleDelete(scope.row._id)">删除新闻</el-button>
           </template>
@@ -63,6 +63,20 @@ export default {
           this.tableData = res.data
         }
       })
+    },
+    handleDelete (id) {
+      this.$axios.post('/journalism/delete', {id}).then(res => {
+        if (res.code === 200) {
+          this.$message.success(res.msg)
+          this.getTableData()
+        }
+      })
+    },
+    handleDetail (id) {
+      this.$router.push(`/manage/journalismDetail/${id}`)
+    },
+    handleEdit () {
+      alert('编辑是不可能的，这辈子都不可能的')
     }
   },
   created() {

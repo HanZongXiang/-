@@ -15,7 +15,11 @@
             <img :src="scope.row.pic" class="pic">
           </template>
         </el-table-column>
-        <el-table-column label="上传者" prop="uploader"></el-table-column>
+        <el-table-column label="上传者" prop="uploader">
+          <template slot-scope="scope">
+            <el-tag type="success">{{scope.row.uploader.username}}</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column label="上传时间">
           <template slot-scope="scope">
             <timer :time="scope.row.createdTime"></timer>
@@ -67,9 +71,9 @@
     height: 75px;
     border-radius: 50%;
     border: 2px solid #40dffd;
-    -webkit-animation:run 6s linear 0s infinite
+    animation:run 6s linear 0s infinite
   }
-  @-webkit-keyframes run {  
+  @keyframes run {  
     from {  
       -webkit-transform:rotate(0deg);  
     }  

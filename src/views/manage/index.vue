@@ -8,6 +8,9 @@
           background-color = "#545c64"
           text-color = "#fff"
           :collapse="opened"
+          @open = "handleOpen"
+          @close = "handleClose"
+          @select = "handleSelect"
         >
           <el-submenu index="用户管理">
             <template slot="title">
@@ -41,7 +44,6 @@
             <el-menu-item-group>
               <el-menu-item index="/manage/journalismsList">新闻列表</el-menu-item>
               <el-menu-item index="/manage/addJournalisms">添加新闻</el-menu-item>
-              <el-menu-item index="/">新闻详情</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           
@@ -74,7 +76,7 @@
 
       <div class="container-wrap">
         <div class="tab" :style="!opened ? 'left: 200px;' : 'left: 65px;'">
-          <h2 class="index-title">后台管理</h2>
+          <h2 class="index-title">后台管理{{title}}</h2>
           <div class="user-center">
             <el-dropdown>
               <span class="el-dropdown-link">
@@ -108,7 +110,8 @@ export default {
   name:'',
   data() {
     return {
-      opened: false
+      opened: false,
+      title: ''
     }
   },
   components: {
@@ -117,10 +120,32 @@ export default {
   methods: {
     toggleSidebar () {
       this.opened = !this.opened
+    },
+    handleOpen (key,keyPath) {
+      this.title = ` > ${key}`
+    },
+    handleClose (key,keyPath) {
+      this.title = ''
+    },
+    handleSelect (key,keyPath) {
+      this.title = ` > ${keyPath[0]}`
     }
+  },
+  beforeRouteUpdate(to,form,next) {
+    this.path = to.path
+    if (to.meta.title) {
+      this.text = ` > ${to.meta.title}`
+      this.title = this.title + this.text
+    }
+    next()
   },
   computed: {
     ...mapState(['userInfo'])
+  },
+  watch: {
+    path () {
+      this.title = this.text
+    }
   }
 }
 </script>

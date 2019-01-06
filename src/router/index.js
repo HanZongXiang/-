@@ -183,6 +183,14 @@ let router = new Router({
               component: () => import('@/views/backStage/journalism/journalismsList')
             },
             {
+              path: 'journalismDetail/:id',
+              name: 'journalismDetail',
+              meta: {
+                title: '新闻详情'
+              },
+              component: () => import('@/views/backStage/journalism/journalismDetail')
+            },
+            {
               path: 'mesList',
               name: 'messageList',
               meta: {
