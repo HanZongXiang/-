@@ -39,15 +39,15 @@
                 <div class="reply-content" v-for="(replyItem, idx) in item.reply" :key="idx">
                   <div class="reply-left">
                     <div class="reply-avatar">
-                      <img :src="item.user.avatar" class="avatar">
+                      <user-avatar :id="replyItem.reviewer"></user-avatar>
                     </div>
                   </div>
                   <div class="reply-right">
                     <div class="name">
-                      <span>{{replyItem.reviewer}}</span>
+                      <user-info :id="replyItem.reviewer"></user-info>
                     </div>
                     <div class="comment-detail" style="color: #666;font-size: 13px;margin: 10px 0 15px;">
-                      回复 <a style="color: #406599;">{{replyItem.responder}}</a>: {{replyItem.content}}
+                      回复 <a style="color: #406599;"><user-info :id="replyItem.responder"></user-info></a>: {{replyItem.content}}
                     </div>
                     <div class="bottom">
                       <div style="color: #8a9aa9;font-size: 13px;">{{replyItem.createdTime}}</div>
@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import userInfo from '@/components/userInfo'
+import userAvatar from '@/components/userAvatar'
 export default {
   name:'',
   data() {
@@ -83,13 +85,13 @@ export default {
     }
   },
   components: {
-
+    userInfo,
+    userAvatar
   },
   methods: {
     getDetails() {
       this.$axios.get(`/journalisms/${this.$route.params.id}`).then(res => {
         if (res.code == 200) {
-          // console.log(res)
           this.details = res.data
         }
       })
@@ -130,7 +132,7 @@ export default {
         }
       })
       this.replyContent = ''
-      this.getComment()
+      window.location.reload()
     },
     innerSubmit (item, replyItem) {
       this.$axios.post('/reply', {responder: replyItem.reviewer,content: this.replyContent, commentId: item._id}).then(res => {
@@ -138,6 +140,7 @@ export default {
           this.$message.success(res.msg)
         }
       })
+      window.location.reload()
     }
     // getReviewer (item) {
     //   this.$axios.get(`/user/${item.reviewer}`).then(res => {
