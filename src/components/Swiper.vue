@@ -2,16 +2,16 @@
   <div class="carousel">
     <el-carousel indicator-position="outside">
       <el-carousel-item>
-        <img src="/static/imgs/swiper1.jpg">
+        <img src="http://pbl.yaojunrong.com/Fk9Ne0AwbAH7QGxElZujgPuT5J9r">
       </el-carousel-item>
       <el-carousel-item>
-        <img src="/static/imgs/swiper2.jpg">
+        <img src="http://pbl.yaojunrong.com/FvOAmXvq18UVGxQ8A6eiyDJw9JTw">
       </el-carousel-item>
       <el-carousel-item>
-        <img src="/static/imgs/swiper3.jpg">
+        <img src="http://pbl.yaojunrong.com/FsRAwa5fwpEYQB_2_ZJloY1BFSH-">
       </el-carousel-item>
       <el-carousel-item>
-        <img src="/static/imgs/swiper4.jpg">
+        <img src="http://pbl.yaojunrong.com/FhjbsNV9fDK0vRbRimZNjchXOkrn">
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -36,8 +36,8 @@ export default {
 
 <style scoped>
 img{
-  width: 550px;
-  height: 350px;
+  width: 548px;
+  height: 297px;
   border-radius: 4px;
 }
 .carousel{

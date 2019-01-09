@@ -29,12 +29,16 @@ export default {
   name:'',
   data() {
     return {
-      searchBarFixed:0,
-      activeIndex: this.$route.path
+      searchBarFixed:0
     }
   },
   components: {
 
+  },
+  computed: {
+    activeIndex () {
+      return this.$route.name == 'newsDetail' ? '/news' : this.$route.path
+    }
   },
   methods: {
     handleScroll () {

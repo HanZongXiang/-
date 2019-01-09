@@ -2,7 +2,7 @@
   <div class="message-board">
     <h2 class="board-title">用户留言板<i>Message Board</i></h2>
     <ul class="board-content clearfix">
-      <li v-for="(item,index) in data">
+      <li v-for="(item,index) in data" :key="index">
         @<span>{{item.author.username}}  :</span> {{item.content}}
       </li>
     </ul>
@@ -61,6 +61,9 @@ export default {
 .board-content{
   box-sizing: border-box;
   li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: 12px;
     color: #555;
     padding: 10px 0;

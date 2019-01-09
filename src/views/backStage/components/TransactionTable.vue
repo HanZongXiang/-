@@ -1,18 +1,23 @@
 <template>
   <el-table :data="list" style="width: 100%;padding-top: 15px;">
-    <el-table-column label="订单号" min-width="200">
+    <el-table-column label="创建时间" min-width="200">
       <template slot-scope="scope">
-        {{ scope.row.order_no }}
+        <timer :time="scope.row.createdTime"></timer>
       </template>
     </el-table-column>
-    <el-table-column label="订单价" width="195" align="center">
+    <el-table-column label="订单商品" width="195" align="center">
       <template slot-scope="scope">
-        ¥{{ scope.row.price }}
+        {{ scope.row.product.name }}
+      </template>
+    </el-table-column>
+    <el-table-column label="商品价格" width="195" align="center">
+      <template slot-scope="scope">
+        ￥ {{ scope.row.product.price }}
       </template>
     </el-table-column>
     <el-table-column label="订单状态" width="100" align="center">
-      <template slot-scope="scope">
-        <el-tag :type="scope.row.status"> {{ scope.row.status }}</el-tag>
+      <template>
+        <el-tag type="danger">派单中</el-tag>
       </template>
     </el-table-column>
   </el-table>
@@ -23,49 +28,18 @@
 export default {
   data() {
     return {
-      list: [
-        {
-          order_no: 44575387121,
-          price: 315,
-          status: 'success'
-        },
-        {
-          order_no: 44575387122,
-          price: 446,
-          status: 'success'
-        },
-        {
-          order_no: 44575387123,
-          price: 225,
-          status: 'pending'
-        },
-        {
-          order_no: 44575387124,
-          price: 268,
-          status: 'success'
-        },
-        {
-          order_no: 44575387125,
-          price: 784,
-          status: 'success'
-        },
-        {
-          order_no: 44575387126,
-          price: 486,
-          status: 'pending'
-        },
-        {
-          order_no: 44575387127,
-          price: 578,
-          status: 'success'
-        }
-      ]
+      list: []
     }
   },
   created() {
+    this.getOrder()
   },
   methods: {
-    
+    getOrder () {
+      this.$axios.get('/order').then(res => {
+        this.list = res.data
+      })
+    }
   }
 }
 </script>

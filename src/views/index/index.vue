@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="w960">
-      <img src="/static/imgs/long.jpg" style="vertical-align:middle">
+      <img src="http://pbl.yaojunrong.com/FuTp_JN3eVYwlewj4ndXjw0_Ob3I" style="vertical-align:middle">
     </div>
     <transition name="fade">
       <div class="w960 reglog" v-show="$route">
@@ -27,14 +27,14 @@
           </p>
         </div>
         <div class="right-content">
-          <img src="/static/imgs/poster1.jpg">
+          <img src="http://pbl.yaojunrong.com/FmmFmHOIOCpBlln3F5ArTW3FjsKD">
         </div>
       </div>
     </transition>
     
     <div class="w960 recommend">
       <div class="left-content">
-        <img src="/static/imgs/poster2.jpg">
+        <img src="http://pbl.yaojunrong.com/FkkbLbyH922t8fLwOsYaa4nf8TCI">
       </div>
       <div class="right-content">
         <h2><i class="left-border"></i>会员推荐歌曲</h2>
@@ -57,12 +57,12 @@
         </p>
       </div>
       <div class="right-content">
-        <img src="/static/imgs/poster3.jpg">
+        <img src="http://pbl.yaojunrong.com/Fjq_vNK04L3DmfJfSKYdt4csQsGZ">
       </div>
     </div>
     <div class="w960 newscenter">
       <div class="left-content">
-        <img src="/static/imgs/poster4.jpg">
+        <img src="http://pbl.yaojunrong.com/Fo24NAiA9fXZPayYvVagu7V00Tvy">
       </div>
       <div class="right-content">
         <h2><i class="left-border"></i>新闻中心</h2>
@@ -145,7 +145,7 @@ export default {
         'line-height': '45px', // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
         background: '#e7eaf1'// 按钮的背景颜色 The background color of the button
       },
-      showPenguin: true,
+      showPenguin: false,
       showWatch: true
     }
   },

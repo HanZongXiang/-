@@ -130,7 +130,7 @@ export default {
   box-sizing: border-box;
   padding:10px;
   padding-left:0;
-  background: url('/static/imgs/login-back.png') no-repeat center center;
+  background: url('http://pbl.yaojunrong.com/Ftoz-dkrsfWUlrFSsPcIvJSSLbVE') no-repeat center center;
   background-size: cover;
 }
 h2 {

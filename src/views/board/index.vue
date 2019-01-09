@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <el-card>
+    <el-card style="min-height: 405px;">
       <div slot="header">发表留言</div>
       <div class="form-wrap">
         <el-form :model="formData">
@@ -31,7 +31,7 @@
             <el-input type="textarea" v-model="formData.content" @keyup.enter.native="handlePublish"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" size="mini" @click="handlePublish">保存发表</el-button>
+            <el-button type="primary" size="mini" @click="handlePublish" style="display: block;margin: 0 auto;">保存发表</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -88,6 +88,7 @@ export default {
 <style scoped lang="scss">
 
 .board-wrap{
+  margin: 15px auto;
   background: #fff;
   padding-top:15px;
 
@@ -103,7 +104,7 @@ export default {
   }
 
   .form-wrap{
-    padding:0 0 20px 40px;
+    margin: 0 auto;
     width: 500px;
     box-sizing: border-box;
   }

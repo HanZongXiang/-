@@ -30,10 +30,12 @@
                   <div style="color: #8a9aa9;font-size: 13px;">{{item.createdTime}}</div>
                   <div style="font-size: 12px;color: #8a93a0;user-select: none;cursor: pointer;" @click="reply(item)"><svg-icon icon-class="reply"></svg-icon> 回复</div>
                 </div>
-                <div style="display: flex;justify-content: space-between;margin-top: 10px;" v-if="item.editing">
-                  <el-input size="mini" style="width: 91%;" v-model="replyContent"></el-input>
-                  <el-button type="warning" size="mini" @click="submitReply(item)">提交</el-button>
-                </div>
+                <transition name="fade">
+                  <div style="display: flex;justify-content: space-between;margin-top: 10px;" v-if="item.editing">
+                    <el-input size="mini" style="width: 91%;" v-model="replyContent"></el-input>
+                    <el-button type="warning" size="mini" @click="submitReply(item)">提交</el-button>
+                  </div>
+                </transition>
               </div>
               <div class="reply-wrap" v-if="item.reply.length !== 0">
                 <div class="reply-content" v-for="(replyItem, idx) in item.reply" :key="idx">
@@ -53,10 +55,12 @@
                       <div style="color: #8a9aa9;font-size: 13px;">{{replyItem.createdTime}}</div>
                       <div style="font-size: 12px;color: #8a93a0;user-select: none;cursor: pointer;" @click="replyInner(replyItem)"><svg-icon icon-class="reply"></svg-icon> 回复</div>
                     </div>
-                    <div style="display: flex;justify-content: space-between;margin-top: 10px;" v-if="replyItem.editing">
-                      <el-input size="mini" style="width: 89%;" v-model="replyContent"></el-input>
-                      <el-button type="warning" size="mini" @click="innerSubmit(item, replyItem)">提交</el-button>
-                    </div>
+                    <transition name="fade">
+                      <div style="display: flex;justify-content: space-between;margin-top: 10px;" v-if="replyItem.editing">
+                        <el-input size="mini" style="width: 89%;" v-model="replyInnerContent"></el-input>
+                        <el-button type="warning" size="mini" @click="innerSubmit(item, replyItem)">提交</el-button>
+                      </div>
+                    </transition>
                   </div>
                 </div>
               </div>
@@ -78,6 +82,7 @@ export default {
   data() {
     return {
       replyContent: '',
+      replyInnerContent: '',
       showReply: false,
       details:'',
       comment: [],
@@ -115,7 +120,9 @@ export default {
         }
       })
       this.commentContent = ''
-      window.location.reload()
+      setTimeout(() => {
+        window.location.reload()
+      }, 800);
     },
     reply (item) {
       item.editing = !item.editing
@@ -132,28 +139,25 @@ export default {
         }
       })
       this.replyContent = ''
-      window.location.reload()
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
     },
     innerSubmit (item, replyItem) {
-      this.$axios.post('/reply', {responder: replyItem.reviewer,content: this.replyContent, commentId: item._id}).then(res => {
+      this.$axios.post('/reply', {responder: replyItem.reviewer,content: this.replyInnerContent, commentId: item._id}).then(res => {
         if (res.code === 200) {
           this.$message.success(res.msg)
         }
       })
-      window.location.reload()
+      this.replyInnerContent = ''
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
     }
-    // getReviewer (item) {
-    //   this.$axios.get(`/user/${item.reviewer}`).then(res => {
-    //     return item.reviewerInfo = res.data
-    //   })
-    // }
   },
   created() {
     this.getDetails()
     this.getComment()
-    this.$axios.get('/order').then(res => {
-      console.log(res)
-    })
   },
   computed: {
 
@@ -162,6 +166,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.fade-enter-active {
+  transition: all 0.5s
+}
+.fade-leave-active {
+  transition: all 0s
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+  transform: translate(0, -10px);
+}
 .avatar {
   width: 32px;
   height: 32px;
