@@ -30,6 +30,14 @@ let router = new Router({
       redirect:'/index',
       children: [
         {
+          path:'emoji',
+          name:'index',
+          meta: {
+            title:'首页'
+          },
+          component: () => import('@/views/Vue-emojis/emoji')
+        },
+        {
           path:'index',
           name:'index',
           meta: {

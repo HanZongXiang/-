@@ -134,9 +134,7 @@ export default {
       margin-top:15px;
     }
   }
-</style>
-<style>
-  .ql-container {
-    height: 300px;
-  }
+  /deep/ .ql-container {
+    height: 450px;
+  } 
 </style>

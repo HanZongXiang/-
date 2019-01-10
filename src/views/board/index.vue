@@ -28,7 +28,8 @@
             <el-input v-model="formData.title"></el-input>
           </el-form-item>
           <el-form-item label="留言内容">
-            <el-input type="textarea" v-model="formData.content" @keyup.enter.native="handlePublish"></el-input>
+            <!-- <el-input type="textarea" v-model="formData.content" @keyup.enter.native="handlePublish"></el-input> -->
+            <VueEmoji @input="onInput" width="457" style="border: none;" height="150"/>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" size="mini" @click="handlePublish" style="display: block;margin: 0 auto;">保存发表</el-button>
@@ -41,6 +42,7 @@
 </template>
 
 <script>
+import VueEmoji from 'emoji-vue'
 export default {
   name:'',
   data() {
@@ -53,7 +55,7 @@ export default {
     }
   },
   components: {
-
+    VueEmoji
   },
   methods: {
     handlePublish() {
@@ -77,6 +79,10 @@ export default {
           this.messageData = res.data
         }
       })
+    },
+    onInput (event) {
+      console.log(event)
+      this.formData.content = event.data
     }
   },
   created() {
