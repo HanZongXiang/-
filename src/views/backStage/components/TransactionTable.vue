@@ -16,7 +16,7 @@
       </template>
     </el-table-column>
     <el-table-column label="订单状态" width="100" align="center">
-      <template>
+      <template slot-scope="scope">
         <el-tag type="danger">派单中</el-tag>
       </template>
     </el-table-column>

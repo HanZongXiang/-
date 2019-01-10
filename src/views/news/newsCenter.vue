@@ -12,7 +12,7 @@
           :key="index">
           <li class="clearfix">
             <div class="left-img fl">
-              <img :src="item.img">
+              <img :src="item.img" style="max-height: 100px;">
             </div>
             <div class="right-content">
               <div class="news-title">{{item.title}}</div>
