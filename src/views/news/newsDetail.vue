@@ -27,7 +27,7 @@
                   {{item.content}}
                 </div>
                 <div class="bottom">
-                  <div style="color: #8a9aa9;font-size: 13px;">{{item.createdTime}}</div>
+                  <div style="color: #8a9aa9;font-size: 13px;"><timer :time="item.createdTime"></timer></div>
                   <div style="font-size: 12px;color: #8a93a0;user-select: none;cursor: pointer;" @click="reply(item)"><svg-icon icon-class="reply"></svg-icon> 回复</div>
                 </div>
                 <transition name="fade">
@@ -52,12 +52,13 @@
                       回复 <a style="color: #406599;"><user-info :id="replyItem.responder"></user-info></a>: {{replyItem.content}}
                     </div>
                     <div class="bottom">
-                      <div style="color: #8a9aa9;font-size: 13px;">{{replyItem.createdTime}}</div>
+                      <div style="color: #8a9aa9;font-size: 13px;"><timer :time="replyItem.createdTime"></timer></div>
                       <div style="font-size: 12px;color: #8a93a0;user-select: none;cursor: pointer;" @click="replyInner(replyItem)"><svg-icon icon-class="reply"></svg-icon> 回复</div>
                     </div>
                     <transition name="fade">
                       <div style="display: flex;justify-content: space-between;margin-top: 10px;" v-if="replyItem.editing">
-                        <el-input size="mini" style="width: 89%;" v-model="replyInnerContent"></el-input>
+                        <VueEmoji @input="onInput" width="457" height="0"/>
+                        <!-- <el-input size="mini" style="width: 89%;" v-model="replyInnerContent"></el-input> -->
                         <el-button type="warning" size="mini" @click="innerSubmit(item, replyItem)">提交</el-button>
                       </div>
                     </transition>
@@ -77,6 +78,7 @@
 <script>
 import userInfo from '@/components/userInfo'
 import userAvatar from '@/components/userAvatar'
+import VueEmoji from 'emoji-vue'
 export default {
   name:'',
   data() {
@@ -91,7 +93,8 @@ export default {
   },
   components: {
     userInfo,
-    userAvatar
+    userAvatar,
+    VueEmoji
   },
   methods: {
     getDetails() {
@@ -153,6 +156,9 @@ export default {
       setTimeout(() => {
         window.location.reload()
       }, 1000);
+    },
+    onInput (event) {
+      this.replyInnerContent = event.data
     }
   },
   created() {
@@ -166,6 +172,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+/deep/ .emoji-picker-icon{
+  right: 14px;
+  top: 12px;
+}
 .fade-enter-active {
   transition: all 0.5s
 }

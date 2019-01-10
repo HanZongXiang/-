@@ -3,7 +3,7 @@
     <div class="breadcrumb">
       <el-breadcrumb separator-class="el-icon-arrow-right"> 
         <el-breadcrumb-item :to="{ path:'/manage/index' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+        <el-breadcrumb-item>留言管理</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
 
@@ -31,8 +31,8 @@
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="primary" size="mini" @click="handleDetail(scope.row._id)">查看详细</el-button>
-              <el-button type="warning" size="mini" @click="handleEdit(scope.row._id)">编辑新闻</el-button>
-              <el-button type="danger" size="mini" @click="handleDelete(scope.row._id)">删除新闻</el-button>
+              <el-button type="warning" size="mini" @click="handleEdit(scope.row._id)">编辑留言</el-button>
+              <el-button type="danger" size="mini" @click="handleDelete(scope.row._id)">删除留言</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -56,17 +56,37 @@
   export default {
     data () {
       return {
-        listData: []
+        listData: [],
+        pn: 1,
+        size: 7
       }
     },
     methods: {
       getListData () {
-        this.$axios.get('/message').then(res => {
+        this.$axios.get('/message', {pn: this.pn, size: this.size}).then(res => {
           if (res.code === 200) {
-            console.log(res)
             this.listData = res.data
           }
         })
+      },
+      handleDelete (id) {
+        this.$confirm('此操作将永久删除该文留言, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$axios.post('/message/delete', {id}).then(res => {
+            if (res.code === 200) {
+              this.$message.success(res.msg)
+              this.getListData()
+            }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
       }
     },
     created () {

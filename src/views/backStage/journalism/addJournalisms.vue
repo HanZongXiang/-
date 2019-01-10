@@ -135,6 +135,6 @@ export default {
     }
   }
   /deep/ .ql-container {
-    height: 450px;
+    height: 450px!important;
   } 
 </style>
