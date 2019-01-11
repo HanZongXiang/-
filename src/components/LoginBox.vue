@@ -56,7 +56,6 @@
 </template>
 
 <script>
-require('../utils/jquery.min.js')
 import {mapState} from 'vuex'
 
 export default {

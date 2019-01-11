@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <div class="header">
-      <img src="http://pbl.yaojunrong.com/FqcoZhfFrlxO-iNYEH9B-priK8B_">
+      <p>小型酒吧在线管理系统</p>
+      <div class="header-bottom">
+        <span></span>
+        <i>
+          Mini-bar-online ManageMent System
+        </i>
+      </div>
     </div>
     <div class="nav">
       <div class="line"></div>
@@ -68,14 +74,34 @@ export default {
 
 <style scoped lang="scss">
 .header{
-  background: url('/static/imgs/body_bg.gif');
-}
-img{
-  display:block;
-  width: 650px;
   height: 120px;
-  margin: 0 auto;
+  background: url('/static/imgs/body_bg.gif');
+  text-align: center;
+  p {
+    font-family: 'HYXuJingXingKaiW';
+    font-size: 48px;
+    padding-top: 11px;
+  }
+  .header-bottom {
+    display:flex;
+    margin: 5px auto 0;
+    width: 470px;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      display: inline-block;
+      height: 2px;
+      width: 100px;
+      background: #000;
+    }
+    i {
+      font-size: 20px;
+      margin-top: 5px;
+      display: block;
+    }
+  }
 }
+
 .nav{
   background: #222;
 }

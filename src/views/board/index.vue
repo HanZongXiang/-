@@ -11,12 +11,17 @@
         <li v-for="(item,index) in messageData" :key="index">
           <div class="content-item"> 
             <div class="top">
-              <img :src="item.author.avatar" style="width: 50px;height: 50px;border-radius: 50%;margin-right: 10px" class="avatar">
-              {{item.title}}
+              <div style="display: flex;align-items: center;">
+                <img :src="item.author.avatar" style="width: 50px;height: 50px;border-radius: 50%;margin-right: 10px" class="avatar">
+                {{item.title}}
+              </div>
+              <div>
+                <el-button type="danger" icon="el-icon-delete" circle size="mini" @click="handleDelete(item._id)"></el-button>
+              </div>
             </div>
             <p style="margin-top: 5px">{{item.content}}</p>
           </div>
-          <p>发表于 <span><timer :time="item.createdTime"></timer></span></p>
+          <p style="text-align: right;"><span>{{item.author.username}}</span> 发表于 <span><timer :time="item.createdTime"></timer></span></p>
         </li>
       </ul>
     </div>
@@ -75,7 +80,6 @@ export default {
     getMessage() {
       this.$axios.get('/message').then(res => {
         if (res.code == 200) {
-          console.log(res);
           this.messageData = res.data
         }
       })
@@ -83,6 +87,29 @@ export default {
     onInput (event) {
       console.log(event)
       this.formData.content = event.data
+    },
+    handleDelete (id) {
+      if (this.$store.state.userInfo.level) {
+        this.$confirm('此操作将永久删除该文留言, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$axios.post('/message/delete', {id}).then(res => {
+            if (res.code === 200) {
+              this.$message.success(res.msg)
+              this.getMessage()
+            }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+      } else {
+        this.$message.info('您没有删除留言的权限')
+      }
     }
   },
   created() {
@@ -136,10 +163,11 @@ export default {
 
       .top {
         display:flex;
-        align-items: center
+        align-items: center;
+        justify-content: space-between;
       }
       p{
-        text-indent: 26px;
+        text-indent: 60px;
         padding:5px 0;
         margin: 0;
       }
