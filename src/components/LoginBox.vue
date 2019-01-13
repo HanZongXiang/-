@@ -121,6 +121,7 @@ export default {
       } else if (command == 2) {
         this.$axios.delete('/logout').then(res => {
           let userInfo = {
+            id: '',
             avatar:'',
             email:'',
             username:'',
@@ -148,7 +149,15 @@ export default {
           if (res.code === 200) {
             this.$message.success(res.msg)
             this.showDialog = false
-            this.$store.commit('CHANGE_userInfo', res.data)
+            let userInfo = {
+              id: res.data.id,
+              avatar: res.data.avatar,
+              email: res.data.email,
+              username: res.data.username,
+              tel: res.data.tel,
+              level: res.data.level
+            }
+            this.$store.commit('CHANGE_userInfo', userInfo)
           } else {
             this.$message.error('数据请求有误')
           }
