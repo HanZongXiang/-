@@ -43,6 +43,28 @@
               
             </el-dropdown-menu>
           </el-dropdown>
+
+          <el-dialog title="修改个人信息" :visible.sync="showDialog" style="text-align: left;">
+            <div style="margin-bottom: 15px;">
+              头像:
+              <upload v-model="avatar"></upload>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <span style="margin-right: 15px;">用户名:</span> 
+              <el-input v-model="username" style="width: 80%" size="medium"></el-input>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <span style="margin-right: 15px;">邮<span style="opacity: 0">由</span>箱:</span>
+              <el-input v-model="email" style="width: 80%" size="medium"></el-input>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <span style="margin-right: 15px;">个<span style="opacity: 0">个</span>签:</span>
+              <el-input v-model="desc" style="width: 80%" size="medium"></el-input>
+            </div>
+            <div class="btn" style="width: 30%;margin: 0 auto;">
+              <el-button type="danger" size="mini" style="width: 100%" @click="modify">修改</el-button>
+            </div>
+          </el-dialog>
       </div>
       <div class="userinfo-wrap">
         <p> 权限 : {{userInfo.level ? '管理员' : '普通用户'}}</p>
@@ -65,7 +87,12 @@ export default {
       formData:{
         tel:'',
         password:''
-      }
+      },
+      showDialog: false,
+      avatar: '',
+      username: '',
+      email: '',
+      desc: ''
     }
   },
   components: {
@@ -84,7 +111,13 @@ export default {
     },
     handleCommand (command) {
       if (command == 1) {
-        
+        this.showDialog = true
+        this.$axios.get(`/user/${this.$store.state.userInfo.id}`).then(res => {
+          this.avatar = res.data.avatar
+          this.username = res.data.username
+          this.email = res.data.email
+          this.desc = res.data.desc
+        })
       } else if (command == 2) {
         this.$axios.delete('/logout').then(res => {
           let userInfo = {
@@ -107,6 +140,21 @@ export default {
         })
       } else if(command == 3) {
         this.$router.push('manage')
+      }
+    },
+    modify () {
+      if (this.avatar && this.username && this.email && this.desc) {
+        this.$axios.put('/user/userEdit', {avatar: this.avatar, username: this.username, email: this.email, desc: this.desc}).then(res => {
+          if (res.code === 200) {
+            this.$message.success(res.msg)
+            this.showDialog = false
+            this.$store.commit('CHANGE_userInfo', res.data)
+          } else {
+            this.$message.error('数据请求有误')
+          }
+        })
+      } else {
+        this.$message.info('数据填写不完整哦亲')
       }
     }
   },
