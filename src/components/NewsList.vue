@@ -1,9 +1,9 @@
 <template>
   <div class="news-list">
-    <div class="news-title clearfix">
-      <span class="fl">酒吧新闻列表<i>Bar News</i></span>
+    <div class="news-title">
+      <span>酒吧新闻列表<i>Bar News</i></span>
       <router-link to="/news">
-        <img class="fr" src="/static/imgs/w_25_02.gif">
+        <svg-icon icon-class="more"></svg-icon>
       </router-link>
       
     </div>
@@ -57,9 +57,6 @@ export default {
       line-height: 40px;
       padding-left: 10px;
       border-bottom:1px dashed #e1e1e1;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap
     }
     .list-item:nth-child(2n-1){
       border-left: 2px solid #ff6700;
@@ -73,6 +70,9 @@ export default {
       text-decoration: none;
       font-size: 14px;
       color:#555;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap
     }
     a:hover{
       color:#ff6700;
@@ -82,6 +82,9 @@ export default {
 .news-title{
   box-sizing: border-box;
   border-bottom:1px solid #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   span{
     height: 40px;
@@ -97,9 +100,6 @@ export default {
       font-weight: 500;
       color:#999;
     }
-  }
-  img{
-    margin-top: 5px;
   }
 }
 </style>
