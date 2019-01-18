@@ -43,7 +43,11 @@ export default {
   },
   computed: {
     activeIndex () {
-      return this.$route.name == 'newsDetail' ? '/news' : this.$route.path
+      if (this.$route.name == 'newsDetail') {
+        return this.$route.name == 'newsDetail' ? '/news' : this.$route.path
+      } else if (this.$route.name.indexOf('netease') != 0) {
+        return '/music'
+      }
     }
   },
   methods: {

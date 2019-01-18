@@ -118,6 +118,40 @@ let router = new Router({
           component: () => import('@/views/reset')
         },
         {
+          path: '/netease',
+          name: 'netease',
+          meta: {
+            title: '网易云扩展'
+          },
+          component: () => import('@/views/netease'),
+          redirect: '/netease/recommend',
+          children: [
+            {
+              path: 'recommend',
+              meta: {
+                title: '推荐歌单'
+              },
+              component: () => import('@/views/netease/recommend')
+            },
+            {
+              path: 'albumDetail',
+              name: 'albumDetail',
+              meta: {
+                title: '歌单详情'
+              },
+              component: () => import('@/views/netease/albumDetail')
+            },
+            {
+              path: 'player',
+              name: 'player',
+              meta: {
+                title: '歌曲播放'
+              },
+              component: () => import('@/views/netease/player')
+            }
+          ]
+        },
+        {
           path: '/manage',
           name: 'manage',
           meta: {
