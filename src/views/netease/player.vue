@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper w960">
-    <div class="player">
+    <div class="player" v-show="songName">
       <div class="song-title">{{songName}}</div>
       <div class="artist">{{singer.name}}</div>
       <div @click="showCover = !showCover">

@@ -45,8 +45,10 @@ export default {
     activeIndex () {
       if (this.$route.name == 'newsDetail') {
         return this.$route.name == 'newsDetail' ? '/news' : this.$route.path
-      } else if (this.$route.name.indexOf('netease') != 0) {
+      } else if (this.$route.path.indexOf('netease') != -1) {
         return '/music'
+      } else if (this.$route.name == 'index') {
+        return '/index'
       }
     }
   },

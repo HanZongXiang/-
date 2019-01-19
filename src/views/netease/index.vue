@@ -7,11 +7,11 @@
         :router="true"
         background-color="#555"
         text-color="#fff"
-        active-text-color="#409eff">
+        active-text-color="#c20c0c">
         <el-menu-item index="/netease/recommend">推荐</el-menu-item>
         <el-menu-item index="/board">歌手</el-menu-item>
-        <el-menu-item index="/features">排行</el-menu-item>
-        <el-menu-item index="/news">搜索</el-menu-item>
+        <el-menu-item index="/netease/rank">排行</el-menu-item>
+        <el-menu-item index="/netease/search">搜索</el-menu-item>
       </el-menu>
     </div>
 

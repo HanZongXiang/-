@@ -134,6 +134,20 @@ let router = new Router({
               component: () => import('@/views/netease/recommend')
             },
             {
+              path: 'rank',
+              meta: {
+                title: '排行榜'
+              },
+              component: () => import('@/views/netease/rank')
+            },
+            {
+              path: 'search',
+              meta: {
+                title: '搜索'
+              },
+              component: () => import('@/views/netease/search')
+            },
+            {
               path: 'albumDetail',
               name: 'albumDetail',
               meta: {

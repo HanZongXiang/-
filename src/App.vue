@@ -60,6 +60,11 @@ body{
   border-left:2px solid rgb(54, 52, 54);
   line-height: 1.5;
 }
+.song-cover {
+  width: 50px;
+  height: 50px;
+  display: block;
+}
 ul{
   list-style: none;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" @click="showModal = false">
+  <div class="wrapper">
     <div class="carousel">
       <swiper :options="swiperOption">
         <swiper-slide v-for="(item, index) in banner" :key="index">
@@ -12,7 +12,11 @@
     <div class="album">
       <div class="top">
         <div class="left">
-          热门推荐: <div class="select" @click.prevent.stop="showModal = !showModal">选择分类 <svg-icon icon-class="dropdown"></svg-icon></div>
+          热门推荐: <div class="select" @click.prevent.stop="showModal = !showModal">选择分类 
+            <svg-icon icon-class="dropdown">
+            </svg-icon>
+            <span v-if="playingCat" style="color: #c20c0c">&nbsp;&nbsp;{{playingCat}}</span>
+        </div>
         </div>
         <transition name="fade">
           <div class="all-tag" v-if="showModal">
@@ -47,19 +51,19 @@
               </div>
               <div class="right-detail">
                 <div class="detail-item">
-                  <i v-for="(item, index) in filterList(0)" :key="index">{{item.name}} <span>|</span></i>
+                  <i v-for="(item, index) in filterList(0)" :key="index" @click="topList(item.name)">{{item.name}} <span>|</span></i>
                 </div>
                 <div class="detail-item">
-                  <i v-for="(item, index) in filterList(1)" :key="index">{{item.name}} <span>|</span></i>
+                  <i v-for="(item, index) in filterList(1)" :key="index" @click="topList(item.name)">{{item.name}} <span>|</span></i>
                 </div>
                 <div class="detail-item">
-                  <i v-for="(item, index) in filterList(2)" :key="index">{{item.name}} <span>|</span></i>
+                  <i v-for="(item, index) in filterList(2)" :key="index" @click="topList(item.name)">{{item.name}} <span>|</span></i>
                 </div>
                 <div class="detail-item">
-                  <i v-for="(item, index) in filterList(3)" :key="index">{{item.name}} <span>|</span></i>
+                  <i v-for="(item, index) in filterList(3)" :key="index" @click="topList(item.name)">{{item.name}} <span>|</span></i>
                 </div>
                 <div class="detail-item">
-                  <i v-for="(item, index) in filterList(4)" :key="index">{{item.name}} <span>|</span></i>
+                  <i v-for="(item, index) in filterList(4)" :key="index" @click="topList(item.name)">{{item.name}} <span>|</span></i>
                 </div>
               </div>
             </div>
@@ -68,8 +72,8 @@
         </transition>
         
         <div class="right">
-          <button class="hot active">热门</button>
-          <button class="new">最新</button>
+          <button class="hot" :class="order === 'hot' ? 'active' : ''" @click="selectOrder('hot')">热门</button>
+          <button class="new" :class="order === 'new' ? 'active' : ''" @click="selectOrder('new')">最新</button>
         </div>
       </div>
       <div class="album-content">
@@ -110,7 +114,9 @@ export default {
         }
       },
       categoryList: [],
-      showModal: false
+      showModal: false,
+      playingCat: '',
+      order: 'hot'
     }
   },
   components: {
@@ -142,6 +148,28 @@ export default {
           this.categoryList = res.data.sub
         }
       })
+    },
+    topList (name) {
+      this.showModal = false
+      this.playingCat = name
+      axios.get(`http://120.77.46.171:3000/top/playlist?limit=50&cat=${name}`).then(res => {
+        if (res.data.code === 200) {
+          this.albumList = res.data.playlists
+        }
+        console.log(res);
+      })
+    },
+    selectOrder (order) {
+      this.order = order
+      if (!this.playingCat) {
+        axios.get(`http://120.77.46.171:3000/top/playlist?limit=50&order=${order}`).then(res => {
+          this.albumList = res.data.playlists
+        })
+      } else {
+        axios.get(`http://120.77.46.171:3000/top/playlist?limit=50&order=${order}&cat=${this.playingCat}`).then(res => {
+          this.albumList = res.data.playlists
+        })
+      }
     }
   },
   created () {
@@ -214,6 +242,7 @@ export default {
       cursor: pointer;
       position: relative;
       z-index: 999;
+      user-select: none;
     }
   }
   .all-tag {
@@ -227,6 +256,7 @@ export default {
     border: 1px solid rgb(138, 138, 138);
     border-radius: 3px;
     box-shadow:0px 0px  10px 5px #efe8e8;
+    user-select: none;
     .svg-wrap {
       color: black!important;
       position: absolute;
@@ -287,6 +317,10 @@ export default {
           color: #ff6700;
           text-decoration: underline;
         }
+        .active {
+          background-color: #c20c0c;
+          color: #fff;
+        }
         span {
           display: inline-block;
           margin: 0 10px 0 8px;
@@ -335,6 +369,7 @@ export default {
         border-radius: 2px;
         display: block;
         margin-right: 10px;
+        height: 230px;
       }
       p {
         width: 215px;
