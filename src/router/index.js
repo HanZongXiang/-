@@ -134,6 +134,20 @@ let router = new Router({
               component: () => import('@/views/netease/recommend')
             },
             {
+              path: 'singer',
+              meta: {
+                title: '歌手榜'
+              },
+              component: () => import('@/views/netease/singer')
+            },
+            {
+              path: 'singerDetail/:id',
+              meta: {
+                title: '歌手详情'
+              },
+              component: () => import('@/views/netease/singerDetail')
+            },
+            {
               path: 'rank',
               meta: {
                 title: '排行榜'

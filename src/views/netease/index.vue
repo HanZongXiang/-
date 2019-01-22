@@ -2,14 +2,14 @@
   <div class="wrapper w960">
     <div style="margin-top: 5px;">
       <el-menu
-        default-active="/netease/recommend"
+        :default-active="activeIndex"
         mode="horizontal"
         :router="true"
         background-color="#555"
         text-color="#fff"
         active-text-color="#c20c0c">
         <el-menu-item index="/netease/recommend">推荐</el-menu-item>
-        <el-menu-item index="/board">歌手</el-menu-item>
+        <el-menu-item index="/netease/singer">歌手</el-menu-item>
         <el-menu-item index="/netease/rank">排行</el-menu-item>
         <el-menu-item index="/netease/search">搜索</el-menu-item>
       </el-menu>
@@ -38,6 +38,17 @@ export default {
   
   },
   computed: {
+    activeIndex () {
+      if (this.$route.path == '/netease/recommed' || this.$route.path == '/netease/albumdetail') {
+        return '/netease/recommend'
+      } else if (this.$route.path == '/netease/singer' || this.$route.path == '/netease/singerDetail') {
+        return '/netease/singer'
+      } else if (this.$route.path == '/netease/rank') {
+        return '/netease/rank'
+      } else if (this.$route.path == '/netease/search') {
+        return '/netease/search'
+      }
+    }
   },
 }
 </script>

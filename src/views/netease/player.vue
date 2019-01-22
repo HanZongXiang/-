@@ -250,7 +250,7 @@ export default {
   }
   .cover {
     border-radius: 50%;
-    border: 12px solid rgba(255, 255, 255, 0.2);
+    border: 12px solid rgba(179, 179, 165, 0.2);
     display: block;
     margin: 25px auto 0;
     transition: all 0.5s;
@@ -331,7 +331,7 @@ export default {
     overflow: hidden;
   }
   .current {
-    color: #fff;
+    color: rgb(255, 205, 50);
     font-size: 16px;
   }
   
