@@ -114,7 +114,7 @@ export default {
       })
     },
     songPlay (id) {
-      this.$router.push({name: 'player', params: {id}})
+      this.$bus.$emit('sendId', {id, playlist: this.currentDetail})
     },
   },
   created () {

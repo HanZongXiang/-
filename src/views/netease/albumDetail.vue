@@ -39,7 +39,7 @@ export default {
       })
     },
     getSongDetail (id) {
-      this.$router.push({name: 'player', params: {id}})
+      this.$bus.$emit('sendId', {id,playlist: this.albumList})
     }
   },
   created () {

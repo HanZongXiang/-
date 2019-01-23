@@ -168,14 +168,6 @@ let router = new Router({
                 title: '歌单详情'
               },
               component: () => import('@/views/netease/albumDetail')
-            },
-            {
-              path: 'player',
-              name: 'player',
-              meta: {
-                title: '歌曲播放'
-              },
-              component: () => import('@/views/netease/player')
             }
           ]
         },

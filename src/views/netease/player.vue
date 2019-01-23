@@ -2,7 +2,7 @@
   <div class="wrapper w960">
     <div class="player" v-show="songName">
       <div class="song-title">{{songName}}</div>
-      <div class="artist">{{singer.name}}</div>
+      <div class="artist">{{singer}}</div>
       <div @click="showCover = !showCover">
         <img class="cover" :src="songDetail.picUrl" alt="歌曲封面" width="350" height="350" :class="playing ? 'playStart' : 'playStop'" v-if="showCover">
         <p :class="playImgTxt" class="cd-lyric" v-if="showCover">
@@ -84,7 +84,7 @@ export default {
         if (res.data.code === 200) {
           this.songDetail = res.data.songs[0].al
           this.songName = res.data.songs[0].name
-          this.singer = res.data.songs[0].ar[0]
+          this.singer = res.data.songs[0].ar[0].name
         }
       })
     },
@@ -250,9 +250,11 @@ export default {
   }
   .cover {
     border-radius: 50%;
+    width: 280px;
+    height: 280px;
     border: 12px solid rgba(179, 179, 165, 0.2);
     display: block;
-    margin: 25px auto 0;
+    margin: 10px auto 0;
     transition: all 0.5s;
   }
   .cd-lyric {
@@ -273,7 +275,7 @@ export default {
   }
   .playStop {
     animation: rotate 20s linear infinite;
-    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
   }
   /* 播放进度条 */
   .time-box {
@@ -305,7 +307,7 @@ export default {
 
   .lyric-wrapper {
     width: 100%;
-    height: 410px;
+    height: 345px;
     margin: 10px auto;
     overflow-y: scroll;
     text-align: center;

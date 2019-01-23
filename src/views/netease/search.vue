@@ -30,7 +30,7 @@
 <script>
 import axios from 'axios'
 export default {
-  name:'',
+  name:'search',
   data() {
     return {
       keyword: '',
@@ -57,7 +57,7 @@ export default {
       })
     },
     songPlay (id) {
-      this.$router.push({name: 'player', params: {id}})
+      this.$bus.$emit('sendId', {id, playlist: this.searchList})
     },
     searchHot (key) {
       axios.get(`http://120.77.46.171:3000/search?keywords=${key}&offset=${this.offset}&limit=${this.limit}`).then(res => {

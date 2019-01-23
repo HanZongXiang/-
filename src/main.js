@@ -10,6 +10,7 @@ import store from './store'
 import timer from './components/timer'
 import upload from './components/Upload'
 import loading from './components/Loading-ufo'
+import bus from './bus'
 import './icons'
 
 Vue.component('timer',timer)
@@ -17,6 +18,7 @@ Vue.component('upload',upload)
 Vue.component('loading', loading)
 
 Vue.use(ElementUI)
+Vue.use(bus)
 Vue.prototype.$axios = $axios
 
 Vue.config.productionTip = false
