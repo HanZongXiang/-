@@ -86,14 +86,6 @@ let router = new Router({
           component: () => import('@/views/news/newsDetail')
         },
         {
-          path: 'music',
-          name: 'music',
-          meta: {
-            title: '音乐专栏'
-          },
-          component: components.music
-        },
-        {
           path: 'order',
           name: 'order',
           meta: {

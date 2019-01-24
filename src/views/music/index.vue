@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card class="music w960">
+    <!-- <el-card class="music w960">
       <div slot="header">音乐列表</div>
       <div class="music-wrap">
         <aplayer v-if="isShow"
@@ -22,7 +22,7 @@
           :total="count">
         </el-pagination>
       </div>
-    </el-card>
+    </el-card> -->
 
     <div class="extra" @click="$router.push('/netease')">网易云音乐扩展
       <svg-icon icon-class="music"></svg-icon>

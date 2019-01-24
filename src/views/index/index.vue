@@ -146,7 +146,7 @@ export default {
         background: '#e7eaf1'// 按钮的背景颜色 The background color of the button
       },
       showPenguin: false,
-      showWatch: true
+      showWatch: false
     }
   },
   components: {

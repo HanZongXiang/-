@@ -22,7 +22,7 @@
         <el-menu-item index="/board" @click="jumpRouter('message')">留言板</el-menu-item>
         <el-menu-item index="/features" @click="$router.push('/features')">酒吧特色</el-menu-item>
         <el-menu-item index="/news" @click="$router.push('/news')">新闻中心</el-menu-item>
-        <el-menu-item index="/music" @click="$router.push('/music')">音乐专栏</el-menu-item>
+        <el-menu-item index="/music" @click="$router.push('/netease')">音乐专栏</el-menu-item>
         <el-menu-item index="/order" @click="jumpRouter('order')">下单 / 付款</el-menu-item>
         <el-menu-item index="/forget" @click="$router.push('/forget')">忘记密码</el-menu-item>
       </el-menu>
