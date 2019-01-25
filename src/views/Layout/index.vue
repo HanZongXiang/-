@@ -478,9 +478,9 @@ export default {
       cursor: pointer;
     }
     .song-name {
-      width: 810px;
+      width: 780px;
       text-align: center;
-      transform: translate(-100px);
+      transform: translate(-117.5px);
     }
   }
   .cover {

@@ -78,7 +78,7 @@
       </div>
       <div class="album-content">
         <ul>
-          <li v-for="(item, index) in albumList" :key="index" @click="albumDetail(item.id, item.coverImgUrl, item.name)">
+          <li v-for="(item, index) in albumList" :key="index" @click="albumDetail(item.id)">
             <img :src="item.coverImgUrl" alt="歌单图片" width="230">
             <p>{{item.name}}</p>
             <span class="creator">by <i>{{item.creator.nickname}}</i></span>
@@ -136,11 +136,10 @@ export default {
         if (res.data.code === 200) {
           this.albumList = res.data.playlists
         }
-        console.log(this.albumList)
       })
     },
-    albumDetail (id, img, name) {
-      this.$router.push({name: 'albumDetail',query: {id, img, name}})
+    albumDetail (id) {
+      this.$router.push({name: 'albumDetail',query: {id}})
     },
     getPlayList () {
       axios.get('http://120.77.46.171:3000/playlist/catlist').then(res => {
@@ -156,7 +155,6 @@ export default {
         if (res.data.code === 200) {
           this.albumList = res.data.playlists
         }
-        console.log(res);
       })
     },
     selectOrder (order) {
