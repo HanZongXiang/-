@@ -152,7 +152,14 @@ export default {
     },
     getSongUrl (id) {
       axios.get(`http://120.77.46.171:3000/music/url?id=${id}`).then(res => {
-        this.songUrl = res.data.data[0].url
+        if (res.data.data[0].url) {
+          this.songUrl = res.data.data[0].url
+        } else {
+          this.$message.info('歌曲暂无法播放')
+          setTimeout(() => {
+            this.toNextSong()
+          }, 3000);
+        }
       })
     },
     getSongLyric (id) {
@@ -216,6 +223,7 @@ export default {
     },
     /* 歌曲播放完毕 */
     songEnd() {
+      document.getElementsByTagName('audio')[0].src = ''
       if (this.mode === 2) {
         this.toRandom()
       } else {
@@ -266,6 +274,7 @@ export default {
       this.showMini = false
     },
     toPrevSong () {
+      document.getElementsByTagName('audio')[0].src = ''
       let songIndex = 0
       this.playlist.forEach((item, index) => {
         if (item.id === this.currentSongId) {
@@ -285,6 +294,7 @@ export default {
       })
     },
     toNextSong () {
+      document.getElementsByTagName('audio')[0].src = ''
       if (this.mode === 2) {
         this.toRandom()
       } else {
