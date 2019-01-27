@@ -53,7 +53,7 @@
         <ul class="table-content">
           <li v-for="(item, index) in albumData.tracks" :key="index" @click="getSongDetail(item.id)">
             <div>{{index + 1}}</div>
-            <div>{{item.name}}</div>
+            <div :title="item.name">{{item.name}}</div>
             <div>{{item.ar[0].name}}</div>
             <div>{{item.al.name}}</div>
           </li>
@@ -432,6 +432,9 @@ export default {
         div:nth-child(2) {
           width: 40%;
           padding-left: 15px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
         div:nth-child(3) {
           width: 30%;

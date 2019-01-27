@@ -40,7 +40,7 @@
               <img src="/static/imgs/next.png" @click="toNextSong">
             </div>
             <div>
-              <img src="/static/imgs/collect.png" alt="">
+              <img src="/static/imgs/collect.png" v-if="!collect" @click="collectSong(currentSongId)">
             </div>
           </div>
           <!-- 音乐播放器 -->
@@ -111,7 +111,8 @@ export default {
       currentLyric: '',
       currentLineNum: 0,
       currentSongId: '',
-      mode: 0
+      mode: 0,
+      collect: false
     }
   },
   components: {
@@ -119,6 +120,14 @@ export default {
     progressbar
   },
   methods: {
+    collectSong (id) {
+      axios.get(`http://120.77.46.171:3000/login/refresh`).then(res1 => {
+        console.log(res1);
+      })
+      axios.post(`http://120.77.46.171:3000/like?id=${id}`).then(res => {
+        console.log(res.data);
+      })
+    },
     showPlayList () {
       this.showList = !this.showList
     },
