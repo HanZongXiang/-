@@ -11,8 +11,18 @@
             <div class="song-name">{{songName}}</div>
           </div>
           <div class="artist">{{singer}}</div>
-          <div>
-            <img class="cover" :src="songDetail.picUrl" alt="歌曲封面" width="350" height="350" :class="playing ? 'playStart' : 'playStop'" v-if="showCover">
+          <div class="cover-lyric">
+            <div class="cover-wrap" v-show="showCover">
+              <img class="cover" :src="songDetail.picUrl" alt="歌曲封面" width="350" height="350" :class="playing ? 'playStart' : 'playStop'">
+            </div>
+            <ul id="lrc" v-show="!showCover">
+              <li v-for="(item, index) in currentLyric.lines">{{item.txt}}</li>
+            </ul>
+
+            <div class="dot-wrapper">
+              <span class="dot" :class="{'active':currentShow==='cd'}" @click="showCd"></span>
+              <span class="dot" :class="{'active':currentShow==='lyric'}" @click="showLrc"></span>
+            </div>
           </div>
           <!-- 播放进度条 -->
           <div class="time-box">
@@ -112,7 +122,9 @@ export default {
       currentLineNum: 0,
       currentSongId: '',
       mode: 0,
-      collect: false
+      collect: false,
+      showCover: true,
+      currentShow: 'cd'
     }
   },
   components: {
@@ -120,6 +132,14 @@ export default {
     progressbar
   },
   methods: {
+    showLrc () {
+      this.showCover = false
+      this.currentShow = 'lyric'
+    },
+    showCd () {
+      this.showCover = true
+      this.currentShow = 'cd'
+    },
     collectSong (id) {
       axios.get(`http://120.77.46.171:3000/login/refresh`).then(res1 => {
         console.log(res1);
@@ -167,13 +187,77 @@ export default {
         if (res.data.code === 200 && res.data.lrc) {
           this.songLyric = res.data.lrc.lyric
           this.currentLyric = new Lyric(this.songLyric, this.handleLyric)
+          this.lyricScroll()
         } else {
-          this.currentLyric = {}
+          this.currentLyric = `纯音乐，请欣赏`
         }
         if (this.playing) {
           this.currentLyric.play()
         }
       })
+    },
+    lyricScroll () {
+      var __eul = document.getElementById("lrc")
+      var __freq = 30; // 滚动频率（ms）
+      var __fraction = 2/5; // 高亮显示行在歌词显示区域中的固定位置百分比 
+      var self = this
+      /**
+       * 当前歌词行（lineno）滚动
+       */
+      var __go = function(_lineno){
+        var _time;
+        if (_lineno === 0) {
+          _time = self.currentLyric.lines[_lineno].time;
+        } else {
+          _time = self.currentLyric.lines[_lineno].time - self.currentLyric.lines[_lineno-1].time;
+        }
+        var _timer = setTimeout(__go.bind(self, _lineno+1), _time);
+        
+        // 高亮下一行歌词
+        if (_lineno > 0) {
+          __eul.children[_lineno-1].setAttribute("class", "");
+        }
+        var _ep = __eul.children[_lineno];
+        _ep.setAttribute("class", "z-crt");
+
+        // 满足需求5，6
+        var _scrollTop;
+        if (_ep.offsetTop < __eul.clientHeight*__fraction){
+          _scrollTop = 0;
+        } else if (_ep.offsetTop > (__eul.scrollHeight - __eul.clientHeight*(1-__fraction))){
+          _scrollTop = __eul.scrollHeight - __eul.clientHeight;
+        } else {
+          _scrollTop = _ep.offsetTop - __eul.clientHeight*__fraction;
+        }
+
+        // 如用户拖动滚动条导致当前显示行超出显示区域范围，下一行直接定位到当前显示行
+        if (__eul.scrollTop > (_scrollTop + __eul.clientHeight*__fraction)
+          || (__eul.scrollTop + __eul.clientHeight*__fraction) < _scrollTop){
+          __eul.scrollTop = _scrollTop;
+        } else { // 单行滚动
+          // 获取滚动步长
+          var _step = Math.ceil(Math.abs(__eul.scrollTop - _scrollTop)/(_time/__freq));
+          __scroll(__eul.scrollTop, _scrollTop, _step);	
+        }
+
+      };
+      /**
+       * 歌词单行滚动实现
+       */
+      var __scroll = function(_crt, _dst, _step){
+        if(Math.abs(_crt - _dst) < _step){
+          return;
+        }
+        if(_crt < _dst){
+          __eul.scrollTop += _step;
+          _crt += _step;
+        } else {
+          __eul.scrollTop -= _step;
+          _crt -= _step;
+        }
+        setTimeout(__scroll.bind(this, _crt, _dst, _step), __freq);
+      };
+      __go(0)
     },
     /* 播放歌曲 */
     songPlay() {
@@ -371,6 +455,41 @@ export default {
 </script>
 
 <style scoped lang="scss">
+/* 底部轮播导航 */
+.dot-wrapper {
+  margin-top: 15px;
+  padding-right: 15px;
+}
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: rgba(230, 97, 97, 0.5);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.active {
+  width: 20px;
+  transition: all 0.5s;
+  background: rgba(230, 97, 97, 0.5);
+}
+.cover-lyric {
+  line-height: 1.7;
+}
+.cover-wrap {
+  height: 290px;
+  padding-bottom: 15px;
+}
+#lrc {
+  margin-top: 15px;
+  height: 310px;
+  overflow-y: scroll;
+  text-align: center;
+  user-select: none;
+  position: relative;
+}
+.z-crt{color:#0f0;}
 .fadeplay-transform-leave-active,
 .fadeplay-transform-enter-active {
   transition: all .6s;
@@ -508,7 +627,7 @@ export default {
     height: 280px;
     border: 12px solid rgba(179, 179, 165, 0.2);
     display: block;
-    margin: 35px auto 0;
+    margin: 20px auto 0;
     transition: all 0.5s;
   }
   .cd-lyric {

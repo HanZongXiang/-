@@ -30,12 +30,12 @@ let router = new Router({
       redirect:'/index',
       children: [
         {
-          path:'emoji',
+          path:'test',
           name:'index',
           meta: {
             title:'首页'
           },
-          component: () => import('@/views/Vue-emojis/emoji')
+          component: () => import('@/views/netease/test')
         },
         {
           path:'index',
