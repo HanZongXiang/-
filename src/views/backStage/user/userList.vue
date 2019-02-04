@@ -12,7 +12,7 @@
         <el-table-column prop="username" label="昵称" width="180"></el-table-column>
         <el-table-column prop="tel" label="电话" width="260">
         </el-table-column>
-        <el-table-column prop="email" label="邮箱" width="350"></el-table-column>
+        <el-table-column prop="email" label="邮箱" width="250"></el-table-column>
         <el-table-column prop="" label="用户头像" width="200" height="100">
           <template slot-scope="scope">
             <img :src="scope.row.avatar" class="avatar">
@@ -21,8 +21,8 @@
         <el-table-column label="个签" prop="desc"></el-table-column>
         <el-table-column label="操作" width="300">
           <template slot-scope="scope">
-            <el-button @click="handleDetails(scope.row._id)" size="small" type="primary">查看详细</el-button>
-            <el-button @click="handleDelete(scope.row._id)" size="small" type="danger">删除</el-button>
+            <el-button @click="handleDetails(scope.row._id)" size="mini" type="primary">查看详细</el-button>
+            <el-button @click="handleDelete(scope.row._id)" size="mini" type="danger">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -32,7 +32,8 @@
       @current-change="pageChange" 
       layout="prev,pager,next,jumper"
       :page-size="4" 
-      :total="count">
+      :total="count"
+      style="margin-top: 15px;">
       </el-pagination>
     </div>
   </div>
@@ -103,8 +104,8 @@ export default {
 }
 
 .avatar{
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   border: 2px solid rgb(187, 167, 167);
 }

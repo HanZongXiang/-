@@ -4,7 +4,7 @@
       <img src="https://wpimg.wallstcn.com/e7d23d71-cf19-4b90-a1cc-f56af8c0903d.png">
     </div>
     <div style="position:relative;">
-      <pan-thumb image="http://pbl.yaojunrong.com/FoTHXRGBhCd61yMbW4vY930wSbTp" class="panThumb"/>
+      <pan-thumb :image="userInfo.avatar" class="panThumb"/>
       <mallki class-name="mallki-text" text="酒吧管理后台"/>
       <div style="padding-top:35px;" class="progress-item">
         <span>访问</span>
@@ -27,22 +27,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import {mapState} from 'vuex'
 import PanThumb from '@/components/PanThumb'
 import Mallki from '@/components/TextHoverEffect/Mallki'
 
 export default {
   components: { PanThumb, Mallki },
-
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        success: 'success',
-        pending: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       statisticsData: {
@@ -52,11 +42,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'name',
-      'avatar',
-      'roles'
-    ])
+    ...mapState(['userInfo'])
   }
 }
 </script>

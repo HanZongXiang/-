@@ -75,8 +75,8 @@ export default {
     handleDetail (id) {
       this.$router.push(`/manage/journalismDetail/${id}`)
     },
-    handleEdit () {
-      alert('编辑是不可能的，这辈子都不可能的')
+    handleEdit (id) {
+      this.$router.push(`/manage/editJournalisms/${id}`)
     }
   },
   created() {

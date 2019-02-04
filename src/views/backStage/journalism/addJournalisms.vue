@@ -2,9 +2,10 @@
   <div class="write-note">
     <div>
       <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{path:'/index'}">首页</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{path:'/layout/users'}">新闻列表</el-breadcrumb-item>
-        <el-breadcrumb-item>添加新闻</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{path:'/manage/index'}">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{path:'/manage/journalismsList'}">新闻列表</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="$route.path === '/manage/addJournalisms'">添加新闻</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="$route.path !== '/manage/addJournalisms'">编辑新闻</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="main-content w960">
@@ -27,13 +28,15 @@
       <quill-editor 
         v-model="formData.content"
         :options="editorOption"
+        @change="handleChange($event)"
       >
       </quill-editor>
 
 
 
       <div class="btn-wrap">
-        <el-button type="primary" size="mini" @click="handleSubmit" style="display: block;margin: 0 auto;">保存提交</el-button>
+        <el-button type="primary" size="mini" @click="handleSubmit" style="display: block;margin: 0 auto;" v-if="$route.path === '/manage/addJournalisms'">保存添加</el-button>
+        <el-button type="danger" size="mini" @click="handleSave" style="display: block;margin: 0 auto;" v-if="$route.path !== '/manage/addJournalisms'">保存编辑</el-button>
       </div>
     </div>
     
@@ -50,6 +53,7 @@ export default {
   name:'writeNote',
   data() {
     return {
+      isEdit: false,
       formData: {
         title:'',
         content:'',
@@ -95,11 +99,53 @@ export default {
           this.$message.info(res.msg)
         }
       })
+    },
+    handleChange({quill,content,text}) {
+      this.formData.contentText = text
+    },
+     getEditData() {
+      this.$axios.get(`/journalisms/${this.$route.params.id}`).then(res => {
+        if (res.code == 200) {
+          this.formData = res.data
+        }
+      })
+    },
+    handleSave() {
+      this.$axios.patch(`/journalism/${this.$route.params.id}`,this.formData).then(res => {
+        if (res.code == 200) {
+          this.$message.success(res.msg)
+          this.$router.push('/manage/journalismsList')
+        } else {
+          this.$message.error('未知错误')
+        }
+      })
     }
   },
   created() {
-    
+    if (this.$route.name == 'editJournalisms') {
+      this.isEdit = true
+    } else {
+      this.isEdit = false
+    }
+    if (this.isEdit) {
+      this.getEditData()
+    }
+  },
+  watch: {
+    $route(to,from) {
+      if(to.name == 'newsEdit') {
+        this.isEdit = true
+      } else {
+        this.isEdit = false
+        this.formData = {
+          title: '',
+          content: '',
+          img: ''
+        }
+      }
+    }
   }
+
 }
 </script>
 

@@ -32,7 +32,7 @@
             this.countDown()
           }, 1000);
         } else {
-          this.$router.push('/')
+          this.$router.push('/manage/index')
         }
       }
     },

@@ -15,10 +15,12 @@
             <div class="cover-wrap" v-show="showCover">
               <img class="cover" :src="songDetail.picUrl" alt="歌曲封面" width="350" height="350" :class="playing ? 'playStart' : 'playStop'">
             </div>
-            <ul id="lrc" v-show="!showCover">
+            <ul id="lrc" v-show="!showCover && currentLyric.lines">
               <li v-for="(item, index) in currentLyric.lines">{{item.txt}}</li>
             </ul>
-
+            <div style="height: 290px;text-align: center;line-height: 290px;" v-show="!showCover && !currentLyric.lines">
+              纯音乐，请欣赏
+            </div>
             <div class="dot-wrapper">
               <span class="dot" :class="{'active':currentShow==='cd'}" @click="showCd"></span>
               <span class="dot" :class="{'active':currentShow==='lyric'}" @click="showLrc"></span>
@@ -124,7 +126,9 @@ export default {
       mode: 0,
       collect: false,
       showCover: true,
-      currentShow: 'cd'
+      currentShow: 'cd',
+      timer: null,
+      timer2: null
     }
   },
   components: {
@@ -211,13 +215,18 @@ export default {
         } else {
           _time = self.currentLyric.lines[_lineno].time - self.currentLyric.lines[_lineno-1].time;
         }
-        var _timer = setTimeout(__go.bind(self, _lineno+1), _time);
+        self.timer = setTimeout(__go.bind(self, _lineno+1), _time);
         
         // 高亮下一行歌词
         if (_lineno > 0) {
           __eul.children[_lineno-1].setAttribute("class", "");
         }
-        var _ep = __eul.children[_lineno];
+        var _ep
+        if (_lineno === 0) {
+          _ep = document.getElementById('lrc').getElementsByTagName('li')[0]
+        } else {
+          _ep = __eul.children[_lineno];
+        }
         _ep.setAttribute("class", "z-crt");
 
         // 满足需求5，6
@@ -255,7 +264,7 @@ export default {
           __eul.scrollTop -= _step;
           _crt -= _step;
         }
-        setTimeout(__scroll.bind(this, _crt, _dst, _step), __freq);
+        self.timer2 = setTimeout(__scroll.bind(this, _crt, _dst, _step), __freq);
       };
       __go(0)
     },
@@ -322,19 +331,6 @@ export default {
       }
       this.$refs.audio.currentTime = 0;
       this.$refs.audio.play();
-    },
-    handleLyric({ lineNum, txt }) {
-      this.currentLineNum = lineNum;
-      this.playingLyric = txt;
-    },
-    /* 旋转头像歌词左右滑动 */
-    middleTouchStart(e) {
-      this.touch.initiated = true;
-      // 用来判断是否是一次移动
-      this.touch.moved = false;
-      const touch = e.touches[0];
-      this.touch.startX = touch.pageX;
-      this.touch.startY = touch.pageY;
     },
     /* 播放按钮点击 */
     togglePlaying() {
@@ -583,6 +579,10 @@ export default {
       .mini-artist {
         font-size: 8px;
         color: rgb(170, 146, 146);
+        width: 85px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
   }
@@ -685,20 +685,17 @@ export default {
     overflow-y: scroll;
     text-align: center;
   }
-  .lyric-wrapper::-webkit-scrollbar {
+  #lrc::-webkit-scrollbar {
     width: 6px;
     height: 6px;
     background-color: #F5F5F5;
   }
-  .lyric-wrapper::-webkit-scrollbar-thumb {
+  #lrc::-webkit-scrollbar-thumb {
     border-radius: 5px;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
     background-color: rgba(119, 137, 145, 0.7);
   }
-  .lyric-wrapper::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
-    background: #fff;
-  }
+  
   .text {
     line-height: 32px;
     color: hsla(0, 3%, 6%, 0.5);

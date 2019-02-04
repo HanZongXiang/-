@@ -10,7 +10,7 @@
         {{ scope.row.product.name }}
       </template>
     </el-table-column>
-    <el-table-column label="商品价格" width="195" align="center">
+    <el-table-column label="商品价格" width="105" align="center">
       <template slot-scope="scope">
         ￥ {{ scope.row.product.price }}
       </template>

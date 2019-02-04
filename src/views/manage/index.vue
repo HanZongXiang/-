@@ -19,8 +19,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/manage/users">用户列表</el-menu-item>
-              <el-menu-item index="/login">个人信息</el-menu-item>
-              <el-menu-item index="/login">修改信息</el-menu-item>
+              <el-menu-item index="/manage/personInfo">个人信息</el-menu-item>
               <el-menu-item index="/manage/userPlay">用户玩耍</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
@@ -54,8 +53,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/manage/mesList">留言列表</el-menu-item>
-              <el-menu-item index="/manage/addMes">添加留言</el-menu-item>
-              <el-menu-item index="/manage/detailMes">留言详情</el-menu-item>
+              <el-menu-item index="/board">添加留言</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -67,7 +65,6 @@
             <el-menu-item-group>
               <el-menu-item index="/manage/goods">商品列表</el-menu-item>
               <el-menu-item index="/manage/addGoods">添加商品</el-menu-item>
-              <el-menu-item index="/layout/book/details">商品详情</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 

@@ -189,6 +189,14 @@ let router = new Router({
               component: components.userList
             },
             {
+              path: 'personInfo',
+              name: 'personInfo',
+              meta: {
+                title: '个人信息'
+              },
+              component: () => import('@/views/backStage/user/personInfo')
+            },
+            {
               path: 'userDetails',
               name: 'userDetails',
               meta: {
@@ -235,6 +243,14 @@ let router = new Router({
                 title: '新闻列表'
               },
               component: () => import('@/views/backStage/journalism/journalismsList')
+            },
+            {
+              path: 'editJournalisms/:id',
+              name: 'editJournalisms',
+              meta: {
+                title: '编辑新闻'
+              },
+              component: components.addJournalisms
             },
             {
               path: 'journalismDetail/:id',
