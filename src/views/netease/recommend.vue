@@ -135,6 +135,11 @@ export default {
       axios.get('http://120.77.46.171:3000/top/playlist').then(res => {
         if (res.data.code === 200) {
           this.albumList = res.data.playlists
+          this.albumList.map((item, index) => {
+            if (item.playCount > 10000) {
+              item.playCount = Math.round(item.playCount / 10000) + '万'
+            }
+          })
         }
       })
     },
@@ -364,7 +369,7 @@ export default {
       margin-bottom: 15px;
       cursor: pointer;
       img {
-        border-radius: 2px;
+        border-radius: 6px;
         display: block;
         margin-right: 10px;
         height: 230px;

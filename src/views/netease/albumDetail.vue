@@ -28,7 +28,7 @@
           <div class="tags-wrap">
             标签：<span v-for="(item, index) in albumData.tags" :key="index">{{item}}</span>
           </div>
-          <div class="brief-intro" :class="show === 'all' ? 'all' : ''">
+          <div class="brief-intro" :class="show === 'all' ? 'all' : ''" ref="desc">
             介绍：{{albumData.description}}
           </div>
           <div @click="toggle" style="color: #0c73c2;cursor: pointer">{{show !== 'all' ? '展开' : '收起'}}</div>
@@ -341,8 +341,8 @@ export default {
         color: #666;
         font-size: 12px;
         white-space: pre-line;
-        height: 140px;
         overflow: hidden;
+        height: 100px;
       }
       .all {
         height: auto;

@@ -1,10 +1,10 @@
 <template>
   <div class="layout">
     <HeaderNav></HeaderNav>
-
+    <div class="bg-blur" v-show="showPlayer" :style="{backgroundImage:'url(' + songDetail.picUrl + ')', backgroundRepeat:'no-repeat', backgroundPosition:'center center', backgroundSize: 'cover'}"></div>
     <!-- 全屏播放器 -->
     <transition name="fadeplay-transform">
-      <div class="wrapper w960" v-show="showPlayer">
+      <div class="player-wrapper w960" v-show="showPlayer">
         <div class="player" v-show="songName">
           <div class="song-title">
             <div class="svg-wrapper"><svg-icon icon-class="down" @click.native="toDown"></svg-icon></div>
@@ -18,7 +18,7 @@
             <ul id="lrc" v-show="!showCover && currentLyric.lines">
               <li v-for="(item, index) in currentLyric.lines">{{item.txt}}</li>
             </ul>
-            <div style="height: 290px;text-align: center;line-height: 290px;" v-show="!showCover && !currentLyric.lines">
+            <div style="height: 325px;text-align: center;line-height: 315px;" v-show="!showCover && !currentLyric.lines">
               纯音乐，请欣赏
             </div>
             <div class="dot-wrapper">
@@ -170,7 +170,15 @@ export default {
         if (res.data.code === 200) {
           this.songDetail = res.data.songs[0].al
           this.songName = res.data.songs[0].name
-          this.singer = res.data.songs[0].ar[0].name
+          if (res.data.songs[0].ar.length > 1) {
+            let singerArr = []
+            res.data.songs[0].ar.forEach(item => {
+              singerArr.push(item.name)
+            })
+            this.singer = singerArr.join('/')
+          } else {
+            this.singer = res.data.songs[0].ar[0].name
+          }
         }
       })
     },
@@ -375,6 +383,10 @@ export default {
     },
     toNextSong () {
       document.getElementsByTagName('audio')[0].src = ''
+      
+      Array.from(document.getElementById('lrc').getElementsByTagName('li')).forEach(item => {
+        item.setAttribute("className", "");
+      })
       if (this.mode === 2) {
         this.toRandom()
       } else {
@@ -451,6 +463,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.bg-blur {
+  width: 100vw;
+  filter: blur(10px);
+  position: absolute;
+  top: 180px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
 /* 底部轮播导航 */
 .dot-wrapper {
   margin-top: 15px;
@@ -600,7 +622,15 @@ export default {
     }
   }
 }
-.wrapper {
+.player-wrapper {
+  position: relative;
+  z-index: 1;
+  color: rgba(29, 28, 28, .8);
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1) inset;
+  text-shadow:0 0 0.2em #f87,
+                -0 -0 0.2em #f87;
   .player {
     text-align: center;
   }
@@ -609,7 +639,8 @@ export default {
     text-align: left;
     font-family: 'HYXuJingXingKaiW';
     font-size: 30px;
-    margin: 36px 0 10px 0;
+    padding-bottom: 10px;
+    padding-top: 36px;
     .svg-wrapper {
       margin-left: 100px;
       width: 150px;
@@ -653,8 +684,6 @@ export default {
   /* 播放进度条 */
   .time-box {
     width: 960px;
-    position: absolute;
-    bottom: 60px;
     border-radius: 2px;
   }
   .time {
@@ -686,9 +715,7 @@ export default {
     text-align: center;
   }
   #lrc::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-    background-color: #F5F5F5;
+    display: none;
   }
   #lrc::-webkit-scrollbar-thumb {
     border-radius: 5px;
@@ -711,8 +738,8 @@ export default {
   .bottom-button-box {
     display: flex;
     width: 920px;
-    position: absolute;
-    bottom: 5px;
+    margin-top: 5px;
+    padding-bottom: 21px;
     div {
       flex: 1;
       img {
